@@ -108,7 +108,7 @@ Trabajo en Scrum, con sprints semanales:
 | Sprint 3 | 1-7 sep | Pulir el v0, redactar el informe, ensayar la sustentación |
 | Sprints 4-8 | 9 sep - 28 oct | Resto del backlog, pruebas, modelo de negocio y financiación |
 
-**Tablero:** GitHub Projects — `Backlog → Sprint actual → En progreso → En revisión → Terminado`.
+**Tablero:** [GitHub Projects](https://github.com/users/juanjosegg7/projects/1/views/1?system_template=kanban) — `Backlog → Sprint actual → En progreso → En revisión → Terminado`.
 
 **Definición de terminado:**
 - Código en `main` sin errores
