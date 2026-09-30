@@ -1,129 +1,93 @@
-# Dashboard de Monitoreo de Producción — Línea Galletas Noel
+# Sistema de Monitoreo del Proceso de Fabricación de Pan Trenza
 
-Aplicación web para centralizar los indicadores de producción, calidad e inventario de una línea de galletas en un tablero único, que agilice la toma de decisiones de supervisores y gerentes de planta.
+Aplicación web para registrar, monitorear y visualizar los indicadores del proceso de fabricación de pan trenza, que centraliza la información en un tablero único para agilizar la toma de decisiones.
 
 > Proyecto de aula — Gerencia de Proyectos, Ingeniería Industrial, Universidad de Medellín (Cód. 6350, Grupo 161) · 2026-2
 
-**Estado actual:** 🟡 Sprint 0 — configuración del repositorio y decisiones de arquitectura. Prototipo v0 (HU1 + HU2 + HU3) previsto para el 8 de septiembre de 2026. Entrega final con demo en vivo: 29 de octubre de 2026.
+**Estado actual:** 🟡 Sprint 1 en curso — definición de empresa, proceso, SIPOC, estrategia, portafolio y clasificación.
 
 ## Equipo
 
-| Integrante | Rol Scrum |
-|---|---|
-| María Camila Tamayo Cuesta | Product Owner |
-| Iván Santiago Cardona Monroy | Scrum Master |
-| Juan Pablo Velásquez | Development Team |
-| Juan José Galicia | Development Team — enfocado en pruebas |
+| Integrante | Rol | Función |
+|---|---|---|
+| Juan Pablo | Scrum Master | Facilitar Scrum y responsable de historias de gestión/documentación |
+| María Camila | QA | Pruebas, validación y apoyo en historias no técnicas |
+| Juan José | Desarrollador | Desarrollo técnico de la aplicación (Sprint 2) |
+| Iván Santiago | Desarrollador | Desarrollo técnico de la aplicación (Sprint 2) |
 
 Docente: Ronal Alexander Álvarez Valencia
 
 ## Arquitectura
 
-Arquitectura de tres capas:
-
 ```
-React (navegador)  ──REST/JSON──▶  Spring Boot  ──▶  PostgreSQL
-     frontend                        backend
+Usuario → HTML/CSS/JS → Google Apps Script → Google Sheets → Dashboard
 ```
 
-- **Frontend (React):** interfaz del tablero; consume la API únicamente vía REST/JSON.
-- **Backend (Spring Boot):** concentra la lógica de negocio, incluido el cálculo de los indicadores; es el único componente que se conecta a la base de datos.
-- **Base de datos (PostgreSQL):** almacena producción, calidad, mantenimiento, inventario y usuarios (diccionario de datos completo en `/docs`).
-
-El canal de carga de archivo (CSV/Excel) hacia el backend es la ruta que se usará el 29 de octubre, cuando el docente entregue un archivo de datos distinto al de prueba.
+- **Frontend (HTML/CSS/JS):** interfaz web que el usuario opera directamente.
+- **Backend (Google Apps Script):** lógica de negocio; guarda y consulta datos en Google Sheets.
+- **Base de datos (Google Sheets):** almacena la información en hojas separadas por módulo (EMPRESA, SIPOC, ESTRATEGIA, PROYECTO, PRODUCCIÓN, INDICADORES).
+- **Despliegue:** Google Apps Script Web App — sin servidor externo.
 
 ## Estructura del repositorio
 
 ```
 .
-├── frontend/   # Aplicación React
-├── backend/    # API Spring Boot
-├── db/         # Esquema y scripts de PostgreSQL
-└── docs/       # Informe del proyecto, evidencia de sprints, pruebas
+├── frontend/    # HTML, CSS y JavaScript de la interfaz
+├── backend/     # Código de Google Apps Script
+├── docs/        # Informe, evidencia de sprints y pruebas
 ```
 
-## Funcionalidades (backlog priorizado)
+## Backlog priorizado
 
-| ID | Historia de usuario | Prioridad |
-|---|---|---|
-| HU1 | Panel principal con los KPI críticos de un vistazo | Alta |
-| HU2 | Eficiencia de líneas por turno y fecha | Alta |
-| HU3 | Carga de archivo (CSV/Excel) que recalcula el tablero | Alta — crítica para la demo final |
-| HU4 | % de productos defectuosos por lote | Alta |
-| HU5 | Alerta visual cuando un indicador sale de rango | Media |
-| HU6 | Disponibilidad de maquinaria e historial de paradas | Media |
-| HU7 | Inventario de materia prima y producto terminado | Media |
-| HU8 | Desperdicio de materia prima por línea | Baja |
+### Sprint 1 — Gestión y documentación (Juan Pablo + María Camila)
 
-Criterios de aceptación completos en `/docs` (Anexo A del informe).
+| ID | Historia de usuario | Responsable | Puntos |
+|---|---|---|---|
+| HU-01 | Registrar información de la panadería y del proceso | Juan Pablo | 3 |
+| HU-02 | Registrar el SIPOC del proceso | María Camila | 4 |
+| HU-03 | Registrar la estrategia corporativa y el objetivo | Juan Pablo | 3 |
+| HU-04 | Registrar portafolio, programa y proyecto | María Camila | 2 |
+| HU-05 | Clasificar el proyecto | Juan Pablo | 2 |
+| HU-06 | Registrar prefactibilidad y factibilidad | María Camila | 4 |
 
-## Indicadores (KPI)
+### Sprint 2 — Desarrollo de la aplicación (Juan José + Iván Santiago)
 
-1. Eficiencia de líneas
-2. Disponibilidad de maquinaria
-3. Desperdicio de materia prima
-4. % de productos defectuosos
-5. Nivel de inventario (días de cobertura)
-6. Producción por turno
-7. Cumplimiento del plan de producción
-8. Tiempo promedio de parada no programada
-9. Rotación de inventario de producto terminado
-10. Tiempo de ciclo de producción
+| ID | Historia de usuario | Responsable | Puntos |
+|---|---|---|---|
+| HU-07 | Gestión del alcance | Juan Pablo | 2 |
+| HU-08 | Gestión del riesgo | María Camila | 3 |
+| HU-09 | Registrar datos de producción diaria | Juan José | 4 |
+| HU-10 | Calcular y visualizar indicadores | Iván Santiago | 5 |
+| HU-11 | Documentar pruebas y validaciones | María Camila | 3 |
+| HU-12 | Construir módulos de registro y consulta | Juan José | 13 |
+| HU-13 | Construir arquitectura y prototipo V0 | Iván Santiago | 13 |
 
-Fórmula, unidad, frecuencia y fuente de cada indicador en `/docs` (Anexo B del informe).
+**Total: 59 puntos**
 
 ## Stack tecnológico
 
-- **Frontend:** React
-- **Backend:** Spring Boot (Java)
-- **Base de datos:** PostgreSQL
-- **Control de versiones:** Git + GitHub · tablero en GitHub Projects
-
-## Cómo ejecutar el proyecto
-
-> Entorno en configuración durante el Sprint 0-1. Esta sección se completa con los comandos reales apenas el equipo defina la estructura final de `frontend/` y `backend/`.
-
-```bash
-# Backend (Spring Boot)
-cd backend
-./mvnw spring-boot:run
-
-# Frontend (React)
-cd frontend
-npm install
-npm start
-```
-
-Variables de entorno y configuración de la base de datos: ver `db/README.md` (pendiente de crear en el Sprint 1).
+- **Frontend:** HTML + CSS + JavaScript
+- **Backend:** Google Apps Script
+- **Base de datos:** Google Sheets
+- **Despliegue:** Google Apps Script Web App
+- **Control de versiones:** Git + GitHub · tablero en [GitHub Projects](https://github.com/users/juanjosegg7/projects/1/views/1?system_template=kanban)
 
 ## Metodología
 
-Trabajo en Scrum, con sprints semanales:
+Trabajo en Scrum con sprints semanales.
 
-| Sprint | Fechas | Objetivo |
-|---|---|---|
-| Sprint 0 | 11-17 ago | Repo en GitHub, entorno, backlog refinado, decisiones de arquitectura |
-| Sprint 1 | 18-24 ago | Esquema de BD + API REST básica + shell de React |
-| Sprint 2 | 25-31 ago | HU1, HU2 y HU3 funcionando de extremo a extremo con datos de prueba |
-| Sprint 3 | 1-7 sep | Pulir el v0, redactar el informe, ensayar la sustentación |
-| Sprints 4-8 | 9 sep - 28 oct | Resto del backlog, pruebas, modelo de negocio y financiación |
-
-**Tablero:** [GitHub Projects](https://github.com/users/juanjosegg7/projects/1/views/1?system_template=kanban) — `Backlog → Sprint actual → En progreso → En revisión → Terminado`.
-
-**Definición de terminado:**
-- Código en `main` sin errores
-- Probado con datos de prueba
-- El commit hace referencia a la historia de usuario correspondiente
-- Cumple sus criterios de aceptación
-- Revisado por otro integrante del equipo (Pull Request)
+**Definición de terminado (Definition of Done):**
+- La historia cumple todos sus criterios de aceptación
+- La funcionalidad o documentación correspondiente está completa
+- Cuando corresponde, los datos se guardan y consultan correctamente en Google Sheets
+- Las funcionalidades desarrolladas son probadas por QA (María Camila)
+- No existen errores conocidos que impidan demostrar la historia
+- La historia puede presentarse en la revisión del Sprint
+- El responsable y QA validan el cumplimiento de los criterios
 
 ## Pruebas
 
-Plan de pruebas completo en `/docs` (Anexo D). La evidencia (capturas, resultados, fecha) se documenta en `/docs/pruebas`, por sprint.
-
-## Documentación completa
-
-El informe completo del proyecto —SIPOC, estrategia corporativa, business case, gestión del alcance y del riesgo, y fichas técnicas de los indicadores— está en [`/docs`](./docs).
+La evidencia de pruebas (capturas, resultados, fecha) se documenta en `/docs/pruebas`, por sprint.
 
 ## Licencia
 
