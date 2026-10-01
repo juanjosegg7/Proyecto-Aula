@@ -45,7 +45,7 @@ Usuario → HTML/CSS/JS → Google Apps Script → Google Sheets → Dashboard
 |---|---|---|---|
 | HU-01 | Registrar información de la panadería y del proceso ([docs/hu-01-informacion-empresa-proceso.md](docs/hu-01-informacion-empresa-proceso.md)) | Juan Pablo | 3 |
 | HU-02 | Registrar el SIPOC del proceso | María Camila | 4 |
-| HU-03 | Registrar la estrategia corporativa y el objetivo | Juan Pablo | 3 |
+| HU-03 | Registrar la estrategia corporativa y el objetivo ([docs/hu-03-estrategia-corporativa-objetivo.md](docs/hu-03-estrategia-corporativa-objetivo.md)) | Juan Pablo | 3 |
 | HU-04 | Registrar portafolio, programa y proyecto | María Camila | 2 |
 | HU-05 | Clasificar el proyecto | Juan Pablo | 2 |
 | HU-06 | Registrar prefactibilidad y factibilidad | María Camila | 4 |
