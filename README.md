@@ -47,8 +47,8 @@ Usuario → HTML/CSS/JS → Google Apps Script → Google Sheets → Dashboard
 | HU-02 | Registrar el SIPOC del proceso | María Camila | 4 |
 | HU-03 | Registrar la estrategia corporativa y el objetivo ([docs/hu-03-estrategia-corporativa-objetivo.md](docs/hu-03-estrategia-corporativa-objetivo.md)) | Juan Pablo | 3 |
 | HU-04 | Registrar portafolio, programa y proyecto | María Camila | 2 |
-| HU-05 | Clasificar el proyecto | Juan Pablo | 2 |
-| HU-06 | Registrar prefactibilidad y factibilidad | María Camila | 4 |
+| HU-05 | Clasificar el proyecto ([docs/hu-05-clasificacion-del-proyecto.md](docs/hu-05-clasificacion-del-proyecto.md)) | Juan Pablo | 2 |
+| HU-06 | Registrar prefactibilidad y factibilidad ([docs/hu-06-business-case-factibilidad.md](docs/hu-06-business-case-factibilidad.md)) | María Camila | 4 |
 
 ### Sprint 2 — Desarrollo de la aplicación (Juan José + Iván Santiago)
 
