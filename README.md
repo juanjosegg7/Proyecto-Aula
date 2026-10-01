@@ -43,7 +43,7 @@ Usuario → HTML/CSS/JS → Google Apps Script → Google Sheets → Dashboard
 
 | ID | Historia de usuario | Responsable | Puntos |
 |---|---|---|---|
-| HU-01 | Registrar información de la panadería y del proceso | Juan Pablo | 3 |
+| HU-01 | Registrar información de la panadería y del proceso ([docs/hu-01-informacion-empresa-proceso.md](docs/hu-01-informacion-empresa-proceso.md)) | Juan Pablo | 3 |
 | HU-02 | Registrar el SIPOC del proceso | María Camila | 4 |
 | HU-03 | Registrar la estrategia corporativa y el objetivo | Juan Pablo | 3 |
 | HU-04 | Registrar portafolio, programa y proyecto | María Camila | 2 |
