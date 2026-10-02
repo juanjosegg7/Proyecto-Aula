@@ -1,0 +1,381 @@
+{
+  "id": "6a98cd84f19c98a64872ea5e",
+  "nodeId": "ari:cloud:trello::board/workspace/6a7290d66890294a571f1dc0/6a98cd84f19c98a64872ea5e",
+  "name": "Proyecto de Aula",
+  "desc": "",
+  "descData": null,
+  "closed": false,
+  "url": "https://trello.com/b/ym2cTeRW/proyecto-de-aula",
+  "shortUrl": "https://trello.com/b/ym2cTeRW",
+  "lists": [
+    {
+      "id": "6a98cdd819465072dea31bfc",
+      "name": "Back",
+      "closed": true
+    },
+    {
+      "id": "6a99192b9f36609c37fd439c",
+      "name": "Backlog",
+      "closed": false
+    },
+    {
+      "id": "6abeefd9211f6e9e6734077b",
+      "name": "In progress",
+      "closed": false
+    },
+    {
+      "id": "6abeefe0a7dd00d4f0745b7c",
+      "name": "Review",
+      "closed": false
+    },
+    {
+      "id": "6abeefe32beace6d09e4fd84",
+      "name": "Done",
+      "closed": false
+    }
+  ],
+  "members": [
+    {
+      "id": "6a7290d50ccbe8a447302741",
+      "fullName": "Pablo",
+      "username": "pablo88",
+      "initials": "P"
+    },
+    {
+      "id": "6a72933950b32037486e5904",
+      "fullName": "maria camila tamayo cuesta",
+      "username": "mariacamilatamayocuesta",
+      "initials": "MC"
+    },
+    {
+      "id": "6a7292101d76e23c5c599594",
+      "fullName": "Juan Jose Galicia",
+      "username": "juanjosegalicia",
+      "initials": "JG"
+    },
+    {
+      "id": "6a98d468b193c0378876ff45",
+      "fullName": "ivan cardona",
+      "username": "ivancardona",
+      "initials": "IC"
+    }
+  ],
+  "cards": [
+    {
+      "id": "6abb0a6c50b84ddf0acfd275",
+      "idShort": 9,
+      "name": "HU-01 — Registrar información de la panadería y del proceso",
+      "desc": "**Historia de usuario:** Como Scrum Master, quiero registrar la información básica de la empresa y del proceso de fabricación del pan trenza, para centralizar la información que será monitoreada.\n\n**Descripción:**\n\n· Formulario con nombre, identificación, dirección, responsable, proceso, producto y capacidad.\n· Validación de campos obligatorios.\n· Guardar en la hoja EMPRESA de Google Sheets.\n· Permitir consultar los datos.",
+      "idList": "6abeefe32beace6d09e4fd84",
+      "listName": "Done",
+      "due": "2026-09-26T04:00:00.000Z",
+      "dueComplete": true,
+      "closed": false,
+      "url": "https://trello.com/c/CNM4Dth5"
+    },
+    {
+      "id": "6abb175f69decca55a6d0020",
+      "idShort": 10,
+      "name": "HU-02 —  Registrar el SIPOC del proceso",
+      "desc": "**Historia de usuario:** Como QA, quiero registrar el SIPOC del proceso de fabricación del pan trenza, para identificar proveedores, entradas, proceso, salidas y clientes.\n\n**Descripción:**\n\n· Registrar Suppliers, Inputs, Process, Outputs y Customers.\n· Incluir recepción, pesaje, mezclado, amasado, división, formado, fermentación, horneado, enfriamiento y empaque.\n· Guardar en la hoja SIPOC.\n· Permitir consulta y actualización.\n\n**Puntos de estimación:** 4 puntos",
+      "idList": "6abeefe32beace6d09e4fd84",
+      "listName": "Done",
+      "due": "2026-09-26T04:00:00.000Z",
+      "dueComplete": true,
+      "closed": false,
+      "url": "https://trello.com/c/1pf52OAR"
+    },
+    {
+      "id": "6abd0faa92c57cfdc46722b6",
+      "idShort": 11,
+      "name": "HU-03 -- Registrar la estrategia corporativa y el objetivo",
+      "desc": "",
+      "idList": "6abeefe32beace6d09e4fd84",
+      "listName": "Done",
+      "due": "2026-09-26T04:00:00.000Z",
+      "dueComplete": true,
+      "closed": false,
+      "url": "https://trello.com/c/rHRcavA8"
+    },
+    {
+      "id": "6abef10f607a6c779fc52f70",
+      "idShort": 18,
+      "name": "HU-04 — Registrar portafolio, programa y proyecto",
+      "desc": "**Historia de usuario:** Como QA, quiero registrar el portafolio, programa y proyecto al que pertenece la aplicación, para ubicar el proyecto dentro de la estructura de gestión.\n\n**Descripción:**\n\n· Portafolio: Mejoramiento y transformación de procesos de producción.\n· Programa: Optimización de producción de panadería.\n· Proyecto: Sistema de monitoreo del proceso de fabricación de pan trenza.\n· Registrar responsable, objetivo, estado y fecha.\n· Guardar en PROYECTO.\n\n**Puntos de estimación:** 2 puntos",
+      "idList": "6abeefe32beace6d09e4fd84",
+      "listName": "Done",
+      "due": "2026-09-26T04:00:00.000Z",
+      "dueComplete": true,
+      "closed": false,
+      "url": "https://trello.com/c/Dr8CMBe6"
+    },
+    {
+      "id": "6abef1b73496745c3f04c321",
+      "idShort": 19,
+      "name": "HU-05 — Clasificar el proyecto",
+      "desc": "**Historia de usuario:** Como Scrum Master, quiero clasificar el proyecto según tipo, ciclo de vida, ODS y RSE, para documentar sus características.\n\n**Descripción:**\n\n· Tipo: proyecto tecnológico/desarrollo de software.\n· Ciclo de vida: ágil.\n· ODS 9 y, según el alcance, ODS 12.\n· Registrar componente de RSE sobre eficiencia y reducción de desperdicios.\n· Guardar la clasificación.\n\n**Puntos de estimación:** 2 puntos",
+      "idList": "6abeefe32beace6d09e4fd84",
+      "listName": "Done",
+      "due": "2026-09-26T04:00:00.000Z",
+      "dueComplete": true,
+      "closed": false,
+      "url": "https://trello.com/c/uaNj5E3X"
+    },
+    {
+      "id": "6abef2567aa2db4418c69aaa",
+      "idShort": 20,
+      "name": "HU-06 – Estudio de prefactibilidad y factibilidad",
+      "desc": "**Como QA, quiero realizar un estudio de prefactibilidad y factibilidad mediante un Business Case, para determinar la viabilidad del proyecto y sustentar la decisión de desarrollar la aplicación o adquirir una herramienta existente.**\n\nElaborar un Business Case que analice la viabilidad técnica, económica, operativa, legal y social del proyecto. También se debe comparar la alternativa de desarrollar la aplicación frente a adquirir una herramienta existente, considerando el costo del desarrollo, los beneficios esperados y los criterios de éxito. **Estimación: 4 puntos**",
+      "idList": "6abeefe32beace6d09e4fd84",
+      "listName": "Done",
+      "due": "2026-10-01T04:00:00.000Z",
+      "dueComplete": true,
+      "closed": false,
+      "url": "https://trello.com/c/arJZfnvo"
+    },
+    {
+      "id": "6abef2cf1ebe110ae512c7e6",
+      "idShort": 21,
+      "name": "HU-07 — Gestionar el backlog del producto",
+      "desc": "Como QA, quiero visualizar un tablero Scrum para conocer el estado de cada historia y facilitar el seguimiento del avance.\n\n**Descripción:**\n\n· Crear hoja BACKLOG.\n· Registrar ID, nombre, prioridad, Sprint, estado y puntos.\n· Usar prioridades Alta, Media y Baja.\n· Usar estados Pendiente, En desarrollo, En revisión y Terminado.\n\n**Puntos de estimación:** 2 puntos",
+      "idList": "6abeefe32beace6d09e4fd84",
+      "listName": "Done",
+      "due": "2026-09-26T04:00:00.000Z",
+      "dueComplete": true,
+      "closed": false,
+      "url": "https://trello.com/c/DRB2Q6Le"
+    },
+    {
+      "id": "6abd118810fdf7307365fc3c",
+      "idShort": 12,
+      "name": "HU-08 -- Visualizar tablero Scrum",
+      "desc": "Como QA, quiero visualizar y gestionar las historias de usuario en un tablero Scrum organizado por las columnas Backlog, Por hacer, En desarrollo, En revisión y Terminado, mostrando en cada tarjeta el ID, nombre, prioridad y puntos de la historia, para conocer el avance de cada actividad, actualizar su estado y filtrar la información por Sprint, tomando los datos directamente de la hoja BACKLOG.\n\n**Puntos de estimación:** 3 puntos\n\n**Responsable:** María Camila | **Apoyo:** Juan Pablo (Scrum Master)",
+      "idList": "6abeefe32beace6d09e4fd84",
+      "listName": "Done",
+      "due": "2026-10-01T04:00:00.000Z",
+      "dueComplete": true,
+      "closed": false,
+      "url": "https://trello.com/c/NxYA2KKA"
+    },
+    {
+      "id": "6abd1296b2040c5b6bf4a8a0",
+      "idShort": 13,
+      "name": "HU-09 -- Registrar datos de producción del pan trenza",
+      "desc": "Como desarrollador, quiero registrar la información de cada lote de fabricación mediante un formulario, incluyendo fecha, número de lote, responsable, masa preparada, panes producidos, aprobados y defectuosos, tiempo de producción, materia prima utilizada y desperdiciada, para calcular indicadores del proceso y almacenar los datos en PRODUCCION.\n\n**Puntos de estimación:** 4 puntos\n\n**Responsable:** Juan José | **Apoyo:** Iván Santiago + María Camila (QA)",
+      "idList": "6abeefe32beace6d09e4fd84",
+      "listName": "Done",
+      "due": "2026-10-01T04:00:00.000Z",
+      "dueComplete": true,
+      "closed": false,
+      "url": "https://trello.com/c/aqg1Abq8"
+    },
+    {
+      "id": "6abd1390538615b2daa4bf68",
+      "idShort": 14,
+      "name": "HU-10 --Calcular indicadores de producción",
+      "desc": "Como desarrollador, quiero calcular automáticamente los indicadores de cada lote, incluyendo el porcentaje de defectos, porcentaje de producción aprobada, productividad y porcentaje de desperdicio, para medir el desempeño del proceso y relacionar los resultados con el lote correspondiente.\n\n**Puntos de estimación:** 5 puntos\n\n**Responsable:** Iván Santiago | **Apoyo:** Juan José + María Camila (QA)",
+      "idList": "6abeefe32beace6d09e4fd84",
+      "listName": "Done",
+      "due": "2026-10-01T04:00:00.000Z",
+      "dueComplete": true,
+      "closed": false,
+      "url": "https://trello.com/c/EHOdkICH"
+    },
+    {
+      "id": "6abd14474fe89a8087215c8b",
+      "idShort": 15,
+      "name": "HU-11 -- Crear fichas técnicas de los indicadores",
+      "desc": "Como QA, quiero consultar las fichas técnicas de los indicadores de defectos, aprobación, productividad y desperdicio, con su definición, objetivo, fórmula, unidad, frecuencia, responsable, fuente, meta y tipo, para conocer cómo se mide cada indicador y consultar esta información desde el módulo Indicadores.\n\n**Puntos de estimación:** 3 puntos\n\n**Responsable:** María Camila | **Apoyo:** Juan Pablo (Scrum Master)",
+      "idList": "6abeefe32beace6d09e4fd84",
+      "listName": "Done",
+      "due": "2026-10-01T04:00:00.000Z",
+      "dueComplete": true,
+      "closed": false,
+      "url": "https://trello.com/c/wIqfT5uX"
+    },
+    {
+      "id": "6abd153e5de73312cb0c8c94",
+      "idShort": 16,
+      "name": "HU-12 -- Construir dashboard de monitoreo",
+      "desc": "Como desarrollador, quiero visualizar un dashboard de los indicadores de fabricación, consultando los datos de PRODUCCION mediante Google Apps Script, para identificar rápidamente el comportamiento del proceso. El dashboard debe mostrar la producción, productos aprobados y defectuosos, desperdicio, productividad y tiempo promedio, permitiendo filtrar la información por fecha, lote o periodo y visualizar gráficos de producción, defectos y desperdicio.\n\n**Puntos de estimación:** 13 puntos\n\n**Responsable:** Juan José | **Apoyo:** Iván Santiago + María Camila (QA)",
+      "idList": "6abeefe32beace6d09e4fd84",
+      "listName": "Done",
+      "due": "2026-10-01T04:00:00.000Z",
+      "dueComplete": true,
+      "closed": false,
+      "url": "https://trello.com/c/hcEaBK8Q"
+    },
+    {
+      "id": "6abd16807b1b63a6a913eda3",
+      "idShort": 17,
+      "name": "HU-13 -- Construir arquitectura y prototipo V0",
+      "desc": "Como desarrollador, quiero construir la arquitectura inicial y el prototipo V0 de la aplicación, integrando una interfaz HTML/CSS/JavaScript, Google Apps Script como backend y Google Sheets como almacenamiento, para validar la navegación y comunicación del sistema. El prototipo incluirá una pantalla principal con menú de Empresa, SIPOC, Estrategia, Proyecto, Producción, Indicadores y Dashboard, además de las funciones necesarias en Apps Script para guardar y consultar información y comprobar la comunicación entre frontend, backend y Sheets.\n\n**Puntos de estimación:** 13 puntos\n\n**Responsable:** Iván Santiago | **Apoyo:** Juan José + María Camila (QA)",
+      "idList": "6abeefe32beace6d09e4fd84",
+      "listName": "Done",
+      "due": "2026-10-01T04:00:00.000Z",
+      "dueComplete": true,
+      "closed": false,
+      "url": "https://trello.com/c/IqHXBAHW"
+    }
+  ],
+  "checklists": [
+    {
+      "id": "6abeee5a430276423b0dae0b",
+      "name": "C.A - HU-01",
+      "idCard": "6abb0a6c50b84ddf0acfd275",
+      "checkItems": [
+        {"id": "6abeee5edec53446dcfda248", "name": "CA1. El formulario muestra los campos definidos.", "state": "complete"},
+        {"id": "6abeee5eb31d5a758ae35da2", "name": "CA2. No se permite guardar campos obligatorios vacíos.", "state": "complete"},
+        {"id": "6abeee5f77c691dc973cdef6", "name": "CA3. La información válida queda registrada en EMPRESA.", "state": "complete"},
+        {"id": "6abeee5f608db7e4de2bb867", "name": "CA4. Se muestra confirmación de guardado.", "state": "complete"},
+        {"id": "6abeee5f96063b5df3bf754b", "name": "CA5. Los datos pueden consultarse nuevamente.", "state": "complete"}
+      ]
+    },
+    {
+      "id": "6abeef511eea014a835ded51",
+      "name": "C.A - HU-02",
+      "idCard": "6abb175f69decca55a6d0020",
+      "checkItems": [
+        {"id": "6abeef5306a1fcffe92be4ac", "name": "CA1. Se muestran las cinco categorías SIPOC.", "state": "complete"},
+        {"id": "6abeef54eab3a0818f5f99ea", "name": "CA2. Cada categoría permite registrar elementos.", "state": "complete"},
+        {"id": "6abeef5420f133c87559dfbd", "name": "CA3. No se permite guardar un SIPOC completamente vacío.", "state": "complete"},
+        {"id": "6abeef55ca195f4b29e179b8", "name": "CA4. La información queda en Google Sheets.", "state": "complete"},
+        {"id": "6abeef551b0f272b6bf49541", "name": "CA5. El SIPOC puede consultarse y actualizarse.", "state": "complete"}
+      ]
+    },
+    {
+      "id": "6abd1076741987596c62e51e",
+      "name": "C.A - HU-03",
+      "idCard": "6abd0faa92c57cfdc46722b6",
+      "checkItems": [
+        {"id": "6abd1096eff70fac78ad0490", "name": "Se puede registrar la estrategia.", "state": "complete"},
+        {"id": "6abd10ab45f4e12c7f3cdd39", "name": "Se puede registrar el objetivo.", "state": "complete"},
+        {"id": "6abd10b9cb5deb561b93963f", "name": "El objetivo queda relacionado con el proceso.", "state": "complete"},
+        {"id": "6abd10c4635a53e73625312d", "name": "Se pueden registrar indicador, meta y responsable.", "state": "complete"}
+      ]
+    },
+    {
+      "id": "6abef3974b0465b2ed967e82",
+      "name": "C.A - HU-04",
+      "idCard": "6abef10f607a6c779fc52f70",
+      "checkItems": [
+        {"id": "6abef39b817d7e8372feaf29", "name": "CA1. Se pueden registrar los tres niveles.", "state": "complete"},
+        {"id": "6abef39b316a2c1f4dfba8d9", "name": "CA2. Existe relación Portafolio → Programa → Proyecto.", "state": "complete"},
+        {"id": "6abef39c99ad8dba4b73db78", "name": "CA3. El proyecto tiene responsable, objetivo, estado y fecha.", "state": "complete"},
+        {"id": "6abef39c666dafacd0afeb0a", "name": "CA4. La información queda almacenada.", "state": "complete"},
+        {"id": "6abef39cb3e10d973391dae9", "name": "CA5. La información puede consultarse.", "state": "complete"}
+      ]
+    },
+    {
+      "id": "6abef21d9792ded41147d87f",
+      "name": "C.A - HU-05",
+      "idCard": "6abef1b73496745c3f04c321",
+      "checkItems": [
+        {"id": "6abef22822a4432cd00787bd", "name": "CA1. Se puede seleccionar el tipo.", "state": "complete"},
+        {"id": "6abef2289782a59b012290b9", "name": "CA2. Se puede seleccionar el ciclo de vida.", "state": "complete"},
+        {"id": "6abef22875d39abdd8da025e", "name": "CA3. Se pueden seleccionar ODS.", "state": "complete"},
+        {"id": "6abef2293d0e400c03b6196a", "name": "CA4. Se puede registrar RSE.", "state": "complete"},
+        {"id": "6abef2292a8da74e7a1db7fb", "name": "CA5. La clasificación queda almacenada", "state": "complete"}
+      ]
+    },
+    {
+      "id": "6abef298a7e0f3b02e5db01c",
+      "name": "C.A - HU-06",
+      "idCard": "6abef2567aa2db4418c69aaa",
+      "checkItems": [
+        {"id": "6abef29b734f5174b3e187d1", "name": "1. Se documenta la viabilidad técnica.", "state": "complete"},
+        {"id": "6abef29b29f4c500f9651834", "name": "2. Se documenta la viabilidad económica, incluyendo costos y beneficios esperados.", "state": "complete"},
+        {"id": "6abef29bf40e0d7001529808", "name": "3. Se analiza la viabilidad operativa.", "state": "complete"},
+        {"id": "6abef29cb9725e76444542d2", "name": "4. Se identifican los aspectos de viabilidad legal y social.", "state": "complete"},
+        {"id": "6abef29c72e687029d5b885a", "name": "5. Se compara construir vs. comprar.", "state": "complete"},
+        {"id": "6abef29cd0ad3b3c209dfb18", "name": "6. Se establece el costo estimado del desarrollo.", "state": "complete"},
+        {"id": "6abef29d1ec58adcdca14a40", "name": "7. Se documentan los beneficios esperados.", "state": "complete"},
+        {"id": "6abef29d33cca9a26506a498", "name": "8. Se establecen criterios de éxito.", "state": "complete"},
+        {"id": "6abef29db3ec698b7efedf1c", "name": "9. El análisis queda consolidado en un Business Case.", "state": "complete"}
+      ]
+    },
+    {
+      "id": "6abef35a03bf79c569981940",
+      "name": "C.A - HU-07",
+      "idCard": "6abef2cf1ebe110ae512c7e6",
+      "checkItems": [
+        {"id": "6abef35eb9a38551b1d91599", "name": "CA1. Cada historia tiene ID único.", "state": "complete"},
+        {"id": "6abef35fe337761a8a3dfd4e", "name": "CA2. Cada historia tiene prioridad y puntos.", "state": "complete"},
+        {"id": "6abef35f3062eeffc0cfd715", "name": "CA3. Cada historia está asignada a un Sprint.", "state": "complete"},
+        {"id": "6abef35f720e1b8fef33aa7a", "name": "CA4. El estado inicial es Pendiente.", "state": "complete"},
+        {"id": "6abef36078c4ee840aa7bb04", "name": "CA5. El backlog permite identificar el estado.", "state": "complete"}
+      ]
+    },
+    {
+      "id": "6abd11de100606678144e3f9",
+      "name": "C.A - HU-08",
+      "idCard": "6abd118810fdf7307365fc3c",
+      "checkItems": [
+        {"id": "6abd1211093ea989d898860d", "name": "Cada historia aparece según su estado.", "state": "complete"},
+        {"id": "6abd1220364eab51ed6b289e", "name": "El estado se puede actualizar.", "state": "complete"},
+        {"id": "6abd122e9cc4f0b6384d1012", "name": "El cambio queda registrado.", "state": "complete"},
+        {"id": "6abd123ac0f97b12b29c8723", "name": "Se pueden identificar las historias del Sprint.", "state": "complete"}
+      ]
+    },
+    {
+      "id": "6abd12f59789422439242f87",
+      "name": "C.A - HU-09",
+      "idCard": "6abd1296b2040c5b6bf4a8a0",
+      "checkItems": [
+        {"id": "6abd1304302b8c81bf914064", "name": "Se puede registrar fecha, lote y responsable.", "state": "complete"},
+        {"id": "6abd131184ffe86b4e7346d6", "name": "Cantidades y tiempos son positivos.", "state": "complete"},
+        {"id": "6abd131f41ee28740450970d", "name": "Aprobados no supera producidos.", "state": "complete"},
+        {"id": "6abd132c2e7b238bf357d700", "name": "Puede calcularse aprobados = producidos − defectuosos.", "state": "complete"},
+        {"id": "6abd1337df9023ce7a6c119c", "name": "El lote queda almacenado.", "state": "complete"}
+      ]
+    },
+    {
+      "id": "6abd13c6ce693d777628b735",
+      "name": "C.A - HU-10",
+      "idCard": "6abd1390538615b2daa4bf68",
+      "checkItems": [
+        {"id": "6abd13d3f209288eab4af7f1", "name": "Los indicadores se calculan automáticamente.", "state": "complete"},
+        {"id": "6abd13dd66839115db559d30", "name": "Defectos = defectuosos / producidos × 100.", "state": "complete"},
+        {"id": "6abd13eceb71efb82ece556c", "name": "Aprobación = aprobados / producidos × 100", "state": "complete"},
+        {"id": "6abd13f921e64ac9632a6358", "name": "Productividad = panes producidos / tiempo", "state": "complete"},
+        {"id": "6abd141236d7f57f4069b09f", "name": "Desperdicio = desperdicio / materia utilizada × 100", "state": "complete"}
+      ]
+    },
+    {
+      "id": "6abd14bfdf7e00e9041fd59a",
+      "name": "C.A - HU-11",
+      "idCard": "6abd14474fe89a8087215c8b",
+      "checkItems": [
+        {"id": "6abd14d3a084fc615b2b253c", "name": "Cada indicador tiene nombre y objetivo.", "state": "complete"},
+        {"id": "6abd14e5315005671340c506", "name": "Tiene fórmula.", "state": "complete"},
+        {"id": "6abd14f250f442619b32dcc0", "name": "Muestra unidad y frecuencia.", "state": "complete"},
+        {"id": "6abd14fe269b53b3855a1dfc", "name": "Muestra responsable, fuente y meta.", "state": "complete"}
+      ]
+    },
+    {
+      "id": "6abd15f88378a1d32c1d4e8d",
+      "name": "C.A - HU-12",
+      "idCard": "6abd153e5de73312cb0c8c94",
+      "checkItems": [
+        {"id": "6abd16203a18888b355aecca", "name": "El dashboard carga datos desde Google Sheets mediante Apps Script.", "state": "complete"},
+        {"id": "6abd162e29acdb35167f6160", "name": "Los valores coinciden con los registros.", "state": "complete"},
+        {"id": "6abd163a6db9d609cf8a0690", "name": "Se puede seleccionar periodo o lote.", "state": "complete"},
+        {"id": "6abd16452492c1de1aa089a6", "name": "Los indicadores se actualizan con nuevos datos.", "state": "complete"},
+        {"id": "6abd1653779e7f1dff2b17da", "name": "Existe gráfico de producción y de desperdicio o defectos.", "state": "complete"}
+      ]
+    },
+    {
+      "id": "6abd16e6a7f60663a76e669d",
+      "name": "C.A - HU-13",
+      "idCard": "6abd16807b1b63a6a913eda3",
+      "checkItems": [
+        {"id": "6abd16fcba08f826869c14ef", "name": "Existe pantalla principal.", "state": "complete"},
+        {"id": "6abd17086b311f35108039fb", "name": "El menú permite navegar entre módulos.", "state": "complete"},
+        {"id": "6abd171825467159ebfb9c93", "name": "Los formularios principales se comunican con Apps Script.", "state": "complete"},
+        {"id": "6abd1733556258a993fcde33", "name": "Apps Script lee y escribe en Google Sheets.", "state": "complete"},
+        {"id": "6abd1744bfd68675917fdcad", "name": "El prototipo funciona como Web App.", "state": "complete"},
+        {"id": "6abd17687295385153ac3da3", "name": "La arquitectura representa Usuario → HTML/CSS/JS → Apps Script → Sheets → Dashboard.", "state": "complete"}
+      ]
+    }
+  ]
+}
