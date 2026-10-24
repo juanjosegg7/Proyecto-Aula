@@ -2,6 +2,15 @@
 
 Aplicación web que **genera el tablero de control del proceso de fabricación de pan trenza a partir de un archivo de datos de producción** (Excel o CSV, una fila por lote) o de lotes registrados manualmente. Calcula los indicadores de las fichas técnicas (% defectos, % aprobación, productividad, % desperdicio y tiempo promedio), los compara con metas y muestra gráficos, carta de control p y hallazgos automáticos.
 
+Si el archivo es una **base relacional** (hojas de producción, paros, productos, turnos, motivos de paro, máquinas y operadores, como `Base_OEE_relacional.xlsx`), genera el **tablero OEE** con los indicadores por dimensión:
+
+| Dimensión | Indicador |
+|---|---|
+| Equipo (horno) | OEE = disponibilidad × rendimiento × calidad |
+| Cliente | SLA (pedidos a tiempo), si el libro trae pedidos |
+| Desperdicio | % no vendido, si trae ventas (la calidad ya va dentro del OEE) |
+| Personas | Productividad de mano de obra (unidades buenas por hora-hombre) |
+
 - **Aplicación:** https://juanjosegg7.github.io/Proyecto-Aula/ (GitHub Pages) · sin internet: abrir `frontend/index.html`
 - **Repositorio:** https://github.com/juanjosegg7/Proyecto-Aula
 
@@ -48,7 +57,8 @@ La versión anterior (Google Apps Script + Google Sheets) fue rechazada en la re
 │   ├── index.html             # Aplicación
 │   ├── css/styles.css
 │   ├── js/importador.js       # Lectura, mapeo y validación de archivos
-│   ├── js/indicadores.js      # Fórmulas de los indicadores
+│   ├── js/indicadores.js      # Fórmulas de los indicadores por lote
+│   ├── js/oee.js              # Modelo relacional y cálculo del OEE, SLA, % no vendido y productividad MO
 │   ├── js/contenido.js        # Fichas técnicas, empresa, SIPOC y backlog
 │   ├── js/app.js              # Interfaz y gráficos
 │   ├── datos/                 # Datos de ejemplo (simulación) en CSV
@@ -97,8 +107,10 @@ La versión anterior (Google Apps Script + Google Sheets) fue rechazada en la re
 | HU-14 | Generar el tablero a partir de un archivo de datos (Excel/CSV) | Juan José | 8 |
 | HU-15 | Reconocer y validar columnas del archivo (diccionario de datos) | Iván Santiago | 5 |
 | HU-16 | Configurar metas, alertas y exportar el tablero | Juan José | 3 |
+| HU-17 | Tablero OEE desde una base relacional (producción, paros y dimensiones) | Iván Santiago | 8 |
+| HU-18 | Indicadores SLA, % no vendido y productividad de mano de obra | Juan José | 5 |
 
-**Total: 75 puntos**
+**Total: 88 puntos**
 
 ## Stack tecnológico y justificación
 

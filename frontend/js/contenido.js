@@ -50,6 +50,75 @@ window.Contenido = {
     }
   ],
 
+  // Fichas del tablero OEE (base relacional): equipo, cliente, desperdicio y personas.
+  fichasOEE: [
+    {
+      clave: 'oee', nombre: 'OEE (eficiencia global del equipo)', tipo: 'Equipo / eficiencia', unidad: '%',
+      objetivo: 'Medir qué fracción del tiempo programado del equipo (horno) se convierte en producción buena a la velocidad ideal.',
+      formula: 'OEE = Disponibilidad × Rendimiento × Calidad',
+      frecuencia: 'Por máquina, turno y día; consolidado semanal y mensual.',
+      responsable: 'Jefe de producción.',
+      fuente: 'Hechos de producción y de paros, con las tablas de turnos, productos y motivos de paro.',
+      meta: '85 % se considera clase mundial; la meta real la define la empresa con su línea base.',
+      interpretacion: 'Cuanto más alto, menos pérdidas por paros, velocidad y calidad. Se lee junto con sus tres factores para saber dónde actuar.',
+      ejemplo: 'A 70,7 % × R 88,9 % × Q 98,4 % = 61,9 % (base OEE de ejemplo)'
+    },
+    {
+      clave: 'disponibilidad', nombre: 'Disponibilidad', tipo: 'Equipo', unidad: '%',
+      objetivo: 'Medir la proporción del tiempo programado en que el equipo estuvo produciendo.',
+      formula: 'A = (Tiempo programado − Paros no excluidos) / Tiempo programado;  Tiempo programado = Duración del turno − Paros excluidos (pausas, almuerzo)',
+      frecuencia: 'Por máquina, turno y día.', responsable: 'Jefe de producción / mantenimiento.',
+      fuente: 'Turnos (duración), paros (duración y motivo) y motivos (si se excluyen del tiempo programado).',
+      meta: '90 % (referencia clase mundial).', interpretacion: 'Las pérdidas vienen de fallas, set-up, falta de material y microparos (ver Pareto).',
+      ejemplo: 'Turno de 480 min, 30 min de pausa → 450 min programados; 235,88 min de paros → (450 − 235,88)/450 = 47,6 %'
+    },
+    {
+      clave: 'rendimiento', nombre: 'Rendimiento', tipo: 'Equipo', unidad: '%',
+      objetivo: 'Medir si el equipo produjo a la velocidad estándar durante el tiempo que estuvo produciendo.',
+      formula: 'R = Tiempo ideal / Tiempo producido;  Tiempo ideal = Σ unidades × (tiempo de ciclo / unidades por ciclo)',
+      frecuencia: 'Por máquina, turno y día.', responsable: 'Jefe de producción.',
+      fuente: 'Producción (unidades) y productos (tiempo de ciclo estándar y unidades por ciclo).',
+      meta: '95 % (referencia clase mundial).', interpretacion: 'Valores bajos indican marcha lenta o paros cortos no registrados.',
+      ejemplo: '784 unidades con ciclo ideal → 187,96 min ideales / 214,12 min producidos = 87,8 %'
+    },
+    {
+      clave: 'calidad', nombre: 'Calidad', tipo: 'Equipo / calidad', unidad: '%',
+      objetivo: 'Medir la proporción de unidades buenas a la primera.',
+      formula: 'Q = (Unidades producidas − Unidades defectuosas) / Unidades producidas',
+      frecuencia: 'Por máquina, turno y día.', responsable: 'Calidad / producción.',
+      fuente: 'Producción: unidades producidas y defectuosas.',
+      meta: '99,9 % (referencia clase mundial).', interpretacion: 'Es la parte del desperdicio que ya va dentro del OEE.',
+      ejemplo: '784 producidas y 17 defectuosas → 767/784 = 97,8 %'
+    },
+    {
+      clave: 'sla', nombre: 'SLA (nivel de servicio al cliente)', tipo: 'Cliente', unidad: '%',
+      objetivo: 'Medir qué porcentaje de los pedidos se entrega completo y a tiempo.',
+      formula: 'SLA = Pedidos entregados en la fecha compromiso (y completos, si hay cantidades) / Total de pedidos × 100',
+      frecuencia: 'Diario y mensual.', responsable: 'Ventas / despachos.',
+      fuente: 'Hoja de pedidos con fecha compromiso y fecha de entrega (y cantidades pedida y entregada, si existen).',
+      meta: '95 % (supuesto editable).', interpretacion: 'Un SLA bajo muestra incumplimientos al cliente aunque el OEE sea bueno.',
+      ejemplo: '47 de 50 pedidos a tiempo → 94 %'
+    },
+    {
+      clave: 'noVendido', nombre: '% no vendido', tipo: 'Desperdicio', unidad: '%',
+      objetivo: 'Medir la producción buena que no se vende (sobrantes o devoluciones).',
+      formula: '% no vendido = (Unidades buenas − Unidades vendidas) / Unidades buenas × 100, o Unidades no vendidas / Unidades buenas × 100',
+      frecuencia: 'Diario.', responsable: 'Producción y ventas.',
+      fuente: 'Hoja de ventas (unidades vendidas o no vendidas) o columna de no vendidas en producción.',
+      meta: '5 % (supuesto editable).', interpretacion: 'Junto con la calidad del OEE completa el desperdicio total del proceso.',
+      ejemplo: '1.000 buenas y 940 vendidas → 6 %'
+    },
+    {
+      clave: 'productividadMO', nombre: 'Productividad de mano de obra', tipo: 'Personas', unidad: 'unidades/hora-hombre',
+      objetivo: 'Medir cuántas unidades buenas produce cada hora de operador.',
+      formula: 'Productividad MO = Σ unidades buenas / Σ horas de operador en producción (duración de los registros de producción)',
+      frecuencia: 'Por operador, turno y mes.', responsable: 'Jefe de producción / talento humano.',
+      fuente: 'Producción: operador, duración, unidades producidas y defectuosas; tabla de operadores para los nombres.',
+      meta: 'Definida por la empresa con su línea base.', interpretacion: 'Compara operadores y turnos; se lee con la calidad para no premiar velocidad con defectos.',
+      ejemplo: '427 unidades − 12 defectuosas en 105,09 min → 415 / 1,75 h = 237 unid./h-h'
+    }
+  ],
+
   empresa: [
     ['Empresa', 'Panadería La Trenza Dorada (nombre anonimizado)'],
     ['Ubicación', 'Envigado, Antioquia'],
@@ -94,7 +163,9 @@ window.Contenido = {
     { id: 'HU-13', nombre: 'Construir arquitectura y prototipo V0', sprint: 2, prioridad: 'Alta', puntos: 13, responsable: 'Iván Santiago', estado: 'En revisión' },
     { id: 'HU-14', nombre: 'Generar el tablero a partir de un archivo de datos (Excel/CSV)', sprint: 3, prioridad: 'Alta', puntos: 8, responsable: 'Juan José', estado: 'En revisión' },
     { id: 'HU-15', nombre: 'Reconocer y validar columnas del archivo (diccionario de datos)', sprint: 3, prioridad: 'Alta', puntos: 5, responsable: 'Iván Santiago', estado: 'En revisión' },
-    { id: 'HU-16', nombre: 'Configurar metas, alertas y exportar el tablero', sprint: 3, prioridad: 'Media', puntos: 3, responsable: 'Juan José', estado: 'En revisión' }
+    { id: 'HU-16', nombre: 'Configurar metas, alertas y exportar el tablero', sprint: 3, prioridad: 'Media', puntos: 3, responsable: 'Juan José', estado: 'En revisión' },
+    { id: 'HU-17', nombre: 'Tablero OEE desde una base relacional (producción, paros y dimensiones)', sprint: 3, prioridad: 'Alta', puntos: 8, responsable: 'Iván Santiago', estado: 'En revisión' },
+    { id: 'HU-18', nombre: 'Indicadores SLA, % no vendido y productividad de mano de obra', sprint: 3, prioridad: 'Media', puntos: 5, responsable: 'Juan José', estado: 'En revisión' }
   ],
   estadosBacklog: ['Backlog', 'Por hacer', 'En desarrollo', 'En revisión', 'Terminado']
 };

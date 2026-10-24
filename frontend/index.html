@@ -41,6 +41,7 @@
         <div class="acciones">
           <button class="btn primario" data-ir="cargar">Cargar archivo</button>
           <button class="btn" id="btn-ejemplo-vacio">Usar datos de ejemplo (simulación)</button>
+          <button class="btn" id="btn-ejemplo-oee-vacio">Usar base OEE de ejemplo</button>
         </div>
       </div>
 
@@ -103,6 +104,67 @@
           </figure>
         </div>
       </div>
+
+      <div id="tablero-oee" hidden>
+        <div class="filtros panel">
+          <label>Desde <select id="o-desde"></select></label>
+          <label>Hasta <select id="o-hasta"></select></label>
+          <label>Máquina <select id="o-maquina"></select></label>
+          <label>Línea <select id="o-linea"></select></label>
+          <label>Turno <select id="o-turno"></select></label>
+          <div class="filtros-acciones">
+            <button class="btn" id="o-limpiar">Limpiar filtros</button>
+            <button class="btn" id="o-btn-metas">Metas</button>
+            <button class="btn" id="o-exportar">Exportar CSV</button>
+            <button class="btn primario" id="o-imprimir">Imprimir / PDF</button>
+          </div>
+        </div>
+
+        <div id="o-panel-metas" class="panel metas" hidden>
+          <h3>Metas del tablero OEE</h3>
+          <p class="nota">Valores de referencia editables: OEE de clase mundial 85 % (A 90 %, R 95 %, Q 99,9 %). Se guardan en este navegador.</p>
+          <div class="metas-grid">
+            <label>OEE mínimo (%) <input type="number" step="0.1" min="0" id="m-oee"></label>
+            <label>Disponibilidad mínima (%) <input type="number" step="0.1" min="0" id="m-disponibilidad"></label>
+            <label>Rendimiento mínimo (%) <input type="number" step="0.1" min="0" id="m-rendimiento"></label>
+            <label>Calidad mínima (%) <input type="number" step="0.1" min="0" id="m-calidad"></label>
+            <label>SLA mínimo (%) <input type="number" step="0.1" min="0" id="m-sla"></label>
+            <label>% no vendido máximo <input type="number" step="0.1" min="0" id="m-noVendido"></label>
+            <label>Productividad mínima (unid./h-h) <input type="number" step="1" min="0" id="m-productividadMO"></label>
+          </div>
+        </div>
+
+        <p class="resumen-filtro" id="o-resumen"></p>
+        <div class="kpis" id="o-kpis"></div>
+        <div class="alertas panel" id="o-alertas"></div>
+
+        <div class="graficos">
+          <figure class="panel grafico ancho">
+            <figcaption>OEE por día <span class="nota">(OEE = disponibilidad × rendimiento × calidad)</span></figcaption>
+            <div class="lienzo"><canvas id="g-oee-dia"></canvas></div>
+          </figure>
+          <figure class="panel grafico">
+            <figcaption>OEE por máquina</figcaption>
+            <div class="lienzo"><canvas id="g-oee-maquina"></canvas></div>
+          </figure>
+          <figure class="panel grafico">
+            <figcaption>Cascada de tiempo <span class="nota">(horas: del tiempo programado al tiempo efectivo)</span></figcaption>
+            <div class="lienzo"><canvas id="g-cascada"></canvas></div>
+          </figure>
+          <figure class="panel grafico">
+            <figcaption>Pareto de paros no programados <span class="nota">(minutos y % acumulado)</span></figcaption>
+            <div class="lienzo"><canvas id="g-pareto"></canvas></div>
+          </figure>
+          <figure class="panel grafico">
+            <figcaption>Productividad de mano de obra <span class="nota">(unidades buenas por hora-hombre)</span></figcaption>
+            <div class="lienzo"><canvas id="g-operadores"></canvas></div>
+          </figure>
+          <figure class="panel grafico ancho">
+            <figcaption>OEE por turno</figcaption>
+            <div class="lienzo"><canvas id="g-oee-turno"></canvas></div>
+          </figure>
+        </div>
+      </div>
     </section>
 
     <!-- ============ CARGAR DATOS ============ -->
@@ -116,12 +178,15 @@
         </label>
         <div class="acciones">
           <button class="btn" id="btn-ejemplo">Usar datos de ejemplo (simulación)</button>
+          <button class="btn" id="btn-ejemplo-oee">Usar base OEE de ejemplo</button>
           <button class="btn" id="btn-plantilla">Descargar plantilla CSV</button>
           <button class="btn peligro" id="btn-borrar-archivo">Quitar datos del archivo</button>
         </div>
         <p class="nota">El archivo se procesa en su navegador; no se envía a ningún servidor. Las columnas se reconocen por su nombre
           (p. ej. «Panes», «Panes producidos», «Defectuosos», «Tiempo total», «Material kg», «Desperdicio kg» o «Desperdicio %»).
           Si alguna no se reconoce, puede asignarla abajo.</p>
+        <p class="nota">También acepta un <b>libro relacional</b> (hojas de producción, paros, productos, turnos, motivos de paro, máquinas y operadores):
+          en ese caso genera el tablero <b>OEE</b> con disponibilidad, rendimiento, calidad, Pareto de paros y productividad de mano de obra; y SLA y % no vendido si el libro trae pedidos o ventas.</p>
       </div>
 
       <div id="carga-detalle" hidden>
@@ -132,19 +197,23 @@
           </div>
           <div id="carga-estado"></div>
         </div>
-        <div class="panel">
+        <div class="panel" id="carga-tablas-panel" hidden>
+          <h3>Tablas reconocidas</h3>
+          <div class="tabla-scroll"><table class="tabla" id="carga-tablas"></table></div>
+        </div>
+        <div class="panel" id="carga-mapeo-panel">
           <h3>Correspondencia de columnas</h3>
           <p class="nota">Campos obligatorios: <b>Panes producidos</b> y <b>Panes defectuosos</b> (o aprobados). Los demás habilitan indicadores adicionales.</p>
           <div class="mapeo" id="mapeo"></div>
           <div id="mapeo-etapas"></div>
           <div class="acciones"><button class="btn primario" id="btn-aplicar">Generar tablero con esta correspondencia</button></div>
         </div>
-        <div class="panel">
+        <div class="panel" id="carga-previa-panel">
           <h3>Vista previa del archivo</h3>
           <div class="tabla-scroll"><table id="vista-previa" class="tabla"></table></div>
         </div>
         <div class="panel" id="carga-errores-panel" hidden>
-          <h3>Filas no cargadas</h3>
+          <h3>Filas no cargadas y advertencias</h3>
           <ul id="carga-errores" class="lista-errores"></ul>
         </div>
       </div>
@@ -179,10 +248,10 @@
     <!-- ============ DATOS ============ -->
     <section id="vista-datos" class="vista">
       <div class="fila-titulo">
-        <h2>Datos e indicadores por lote</h2>
+        <h2 id="datos-titulo">Datos e indicadores por lote</h2>
         <input type="search" id="buscar" placeholder="Buscar lote, periodo o responsable">
       </div>
-      <p class="nota">Se aplican los mismos filtros del tablero. Cada indicador se calcula a partir de los datos del lote en la misma fila.</p>
+      <p class="nota" id="datos-nota">Se aplican los mismos filtros del tablero. Cada indicador se calcula a partir de los datos del lote en la misma fila.</p>
       <div class="panel"><div class="tabla-scroll"><table class="tabla" id="tabla-datos"></table></div></div>
     </section>
 
@@ -230,8 +299,10 @@
   <script src="vendor/chart.umd.min.js"></script>
   <script src="vendor/xlsx.full.min.js"></script>
   <script src="datos/ejemplo.js"></script>
+  <script src="datos/ejemplo-oee.js"></script>
   <script src="js/importador.js"></script>
   <script src="js/indicadores.js"></script>
+  <script src="js/oee.js"></script>
   <script src="js/contenido.js"></script>
   <script src="js/app.js"></script>
 </body>

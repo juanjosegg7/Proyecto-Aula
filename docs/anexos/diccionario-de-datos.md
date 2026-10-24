@@ -47,6 +47,53 @@ Reglas generales:
 
 Los consolidados se calculan como razón de sumas (no promedio de porcentajes), por lo que coinciden con los totales del periodo.
 
+## Base relacional OEE (segundo formato de entrada)
+
+Si el libro trae una hoja de **producción** con máquina, fecha, turno y unidades, y al menos una tabla relacionada (paros, turnos o productos), la aplicación cambia al **tablero OEE**. Cada tabla se reconoce por sus columnas (en inglés o español), sin importar el nombre de la hoja.
+
+| Tabla | Columnas obligatorias | Columnas opcionales | Uso |
+|---|---|---|---|
+| Producción (hechos) | `machine_id`, `shift_date`, `shift_id`, `units_produced` | `units_defective`, `product_id`, `order_id`, `duration_min`, `timestamp_start`, `timestamp_end`, `operator_id` | Unidades, calidad, tiempo ideal, horas-hombre |
+| Paros (hechos) | `machine_id`, `shift_date`, `shift_id`, `reason_id`, `duration_min` | `timestamp_start`, `timestamp_end` | Disponibilidad y Pareto |
+| Productos | `product_id`, `std_cycle_time_sec` | `product_name`, `std_units_per_cycle` (1 si falta) | Tiempo ideal por unidad = ciclo / unidades por ciclo |
+| Turnos | `shift_id`, `duration_min` | — | Tiempo base del turno |
+| Motivos de paro | `reason_id` y `ppt_excluded` (Y/N) o `type` | `reason_name` | `Y` = se resta del tiempo programado (pausas, almuerzo) |
+| Máquinas | `machine_id` y `machine_name` o `line` | — | Nombres y filtro por línea |
+| Operadores | `operator_id`, `operator_name` | — | Nombres en productividad de mano de obra |
+| Pedidos *(para SLA)* | `order_id`, `due_date`, `delivery_date` | `qty_ordered`, `qty_delivered` | Pedido a tiempo = entrega ≤ compromiso (y completo) |
+| Ventas *(para % no vendido)* | `units_sold` | `fecha`, `product_id`, `units_unsold` | % no vendido |
+
+También se aceptan nombres en español: máquina/equipo/horno, fecha, turno, producto, unidades producidas, defectuosas, duración, motivo, operario, tiempo de ciclo, unidades por ciclo, fecha compromiso, fecha de entrega, unidades vendidas, etc. (lista completa en `frontend/js/oee.js`).
+
+### Fórmulas (iguales a la hoja OEE de referencia)
+
+Por máquina, fecha y turno:
+
+| Columna | Fórmula |
+|---|---|
+| Tiempo base | duración del turno (tabla de turnos) |
+| Paros programados y excluidos | Σ duración de paros cuyo motivo tiene `ppt_excluded = Y` |
+| Tiempo total programado | tiempo base − paros excluidos |
+| Paros | Σ duración de paros cuyo motivo tiene `ppt_excluded = N` |
+| Tiempo total producido | tiempo programado − paros |
+| Disponibilidad (A) | tiempo producido / tiempo programado |
+| Calidad (Q) | (unidades − defectuosas) / unidades |
+| Tiempo total ideal | Σ unidades × ciclo / unidades por ciclo / 60 (min) |
+| Rendimiento (R) | tiempo ideal / tiempo producido |
+| OEE | A × R × Q |
+
+Los consolidados (por día, máquina, turno o todo el periodo) suman los componentes y recalculan las razones.
+Un motivo de paro que no esté en la tabla de motivos no se cuenta en ningún grupo (igual que el `XLOOKUP` de la hoja de referencia) y se muestra una advertencia.
+Si falta la tabla de turnos, el tiempo base sale del primer al último registro con hora.
+
+| Indicador adicional | Fórmula |
+|---|---|
+| Productividad de mano de obra | Σ unidades buenas / Σ horas de operador en registros de producción |
+| SLA | pedidos entregados a tiempo (y completos) / total de pedidos × 100 |
+| % no vendido | (unidades buenas − vendidas) / unidades buenas × 100, o no vendidas / buenas × 100 |
+
+Verificación: con `Base_OEE_relacional.xlsx` la app da 160 turnos-máquina, A = 70,67 %, R = 88,95 %, Q = 98,45 % y **OEE = 61,89 %**, igual a la hoja OEE del libro (prueba automática en `tests/oee.test.js`).
+
 ## Almacenamiento
 
 | Clave (localStorage del navegador) | Contenido |

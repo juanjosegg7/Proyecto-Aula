@@ -11,7 +11,7 @@
 
 ## 2. Pruebas unitarias automatizadas
 
-Ejecutar `npm test` (Node.js 18 o superior). Resultado al 24-10-2026: **19 pruebas, 19 aprobadas, 0 fallidas.**
+Ejecutar `npm test` (Node.js 18 o superior). Resultado al 24-10-2026: **26 pruebas, 26 aprobadas, 0 fallidas.**
 
 | # | Prueba | Criterio cubierto |
 |---|---|---|
@@ -34,6 +34,13 @@ Ejecutar `npm test` (Node.js 18 o superior). Resultado al 24-10-2026: **19 prueb
 | 17 | Carta p: límites 3σ y detección de un lote fuera de control | HU-12 |
 | 18 | Semáforo frente a la meta | HU-16 |
 | 19 | Tiempos por etapa y cuello de botella | HU-12 |
+| 20 | Reconoce las 7 tablas de la base OEE aunque las hojas cambien de nombre | HU-17 |
+| 21 | OEE global igual a la hoja OEE del Excel (A 70,67 %, R 88,95 %, Q 98,45 %, OEE 61,89 %) | HU-17 |
+| 22 | Registro PR_01 · 05/01/2026 · turno A igual a su fila de la hoja OEE (OEE 40,86 %) | HU-17 |
+| 23 | Filtros por máquina y turno, Pareto ordenado al 100 % y productividad por operador | HU-17, HU-18 |
+| 24 | SLA y % no vendido cuando el libro trae pedidos y ventas | HU-18 |
+| 25 | Rechaza filas con defectuosas mayores que producidas | HU-17 |
+| 26 | Un archivo de lotes simple no se confunde con una base relacional | HU-14 |
 
 ## 3. Pruebas extremo a extremo (navegador)
 
@@ -53,6 +60,10 @@ Archivos usados: la simulación del repositorio y dos archivos con formato disti
 | E8 | Cambiar estado de HU en Backlog | La tarjeta cambia de columna y se conserva | Correcto |
 | E9 | Vista móvil 390 px | Sin desplazamiento horizontal | Correcto (ancho 390 px) |
 | E10 | Consola del navegador | Sin errores de JavaScript | Correcto |
+| E11 | Cargar `Base_OEE_relacional.xlsx` (con su hoja OEE calculada) | Cambia a tablero OEE; 160 turnos-máquina; OEE 61,9 %; SLA y % no vendido en N/D con la explicación | Correcto |
+| E12 | Filtrar máquina PR_01 y turno A | 20 turnos-máquina; OEE 64,4 % | Correcto |
+| E13 | Recargar la página con la base OEE | Se conserva el tablero OEE | Correcto |
+| E14 | Cargar luego un archivo de lotes | Vuelve al tablero por lotes | Correcto |
 
 ## 4. Lista de chequeo de aceptación
 
@@ -65,6 +76,8 @@ Archivos usados: la simulación del repositorio y dos archivos con formato disti
 | HU-14 | Genera el tablero con un archivo distinto al de desarrollo | Cumple |
 | HU-15 | Reconoce columnas, permite corregir la correspondencia y reporta filas inválidas | Cumple |
 | HU-16 | Metas configurables, semáforo, exportar CSV e imprimir | Cumple |
+| HU-17 | Tablero OEE desde base relacional; valores iguales a la hoja de referencia; Pareto de paros; filtros por fecha, máquina, línea y turno | Cumple |
+| HU-18 | Productividad de mano de obra calculada; SLA y % no vendido cuando el archivo trae pedidos y ventas | Cumple (la base de ejemplo no trae pedidos ni ventas) |
 
 ## 5. Validación con el usuario
 
