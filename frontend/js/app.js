@@ -130,7 +130,9 @@
   };
   if (window.Chart) {
     Chart.defaults.font.family = getComputedStyle(document.documentElement).fontFamily;
-    Chart.defaults.color = '#6d645a';
+    var css = getComputedStyle(document.documentElement);
+    Chart.defaults.color = css.getPropertyValue('--texto-suave').trim() || '#6d645a';
+    Chart.defaults.borderColor = css.getPropertyValue('--borde').trim() || '#e4ded4';
     Chart.defaults.maintainAspectRatio = false;
     Chart.defaults.animation = false;
   }
@@ -344,7 +346,7 @@
         var hojas = {};
         if (esTexto) {
           var texto = lector.result;
-          if (texto.indexOf('�') !== -1) { // no era UTF-8: se vuelve a leer como Windows-1252 (Excel en español)
+          if (texto.indexOf('\uFFFD') !== -1) { // no era UTF-8: se vuelve a leer como Windows-1252 (Excel en español)
             var l2 = new FileReader();
             l2.onload = function () { iniciarCarga(nombre, { CSV: I.leerCSV(l2.result) }); };
             l2.readAsText(archivo, 'windows-1252');
