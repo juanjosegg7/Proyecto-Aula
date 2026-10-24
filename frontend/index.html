@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tablero Pan Trenza</title>
+  <meta name="description" content="Tablero de control del proceso de fabricación de pan trenza: carga un archivo de producción y genera los indicadores.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23b45309'/%3E%3Cpath d='M8 22V14M14 22V9M20 22V16M26 22V11' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="barra">
+    <div class="marca">
+      <span class="logo" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="28" height="28"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M8 22V14M14 22V9M20 22V16M26 22V11" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg>
+      </span>
+      <div>
+        <strong>Tablero de control · Pan Trenza</strong>
+        <small id="fuente-actual">Sin datos cargados</small>
+      </div>
+    </div>
+    <nav class="menu" id="menu" aria-label="Módulos">
+      <button data-vista="tablero" class="activo">Tablero</button>
+      <button data-vista="cargar">Cargar datos</button>
+      <button data-vista="registrar">Registrar lote</button>
+      <button data-vista="datos">Datos</button>
+      <button data-vista="fichas">Fichas técnicas</button>
+      <button data-vista="proceso">Empresa y proceso</button>
+      <button data-vista="backlog">Backlog Scrum</button>
+    </nav>
+  </header>
+
+  <div id="aviso" class="aviso" role="status" hidden></div>
+
+  <main>
+    <!-- ============ TABLERO ============ -->
+    <section id="vista-tablero" class="vista activa">
+      <div id="tablero-vacio" class="vacio">
+        <h2>Aún no hay datos para el tablero</h2>
+        <p>Cargue un archivo de producción (Excel o CSV) o registre lotes manualmente. El tablero se genera automáticamente.</p>
+        <div class="acciones">
+          <button class="btn primario" data-ir="cargar">Cargar archivo</button>
+          <button class="btn" id="btn-ejemplo-vacio">Usar datos de ejemplo (simulación)</button>
+        </div>
+      </div>
+
+      <div id="tablero-contenido" hidden>
+        <div class="filtros panel">
+          <label>Desde <select id="f-desde"></select></label>
+          <label>Hasta <select id="f-hasta"></select></label>
+          <label>Lote <select id="f-lote"></select></label>
+          <label>Responsable <select id="f-responsable"></select></label>
+          <label>Origen
+            <select id="f-origen">
+              <option value="">Todos</option><option value="archivo">Archivo</option><option value="manual">Registro manual</option>
+            </select>
+          </label>
+          <div class="filtros-acciones">
+            <button class="btn" id="btn-limpiar-filtros">Limpiar filtros</button>
+            <button class="btn" id="btn-metas">Metas</button>
+            <button class="btn" id="btn-exportar">Exportar CSV</button>
+            <button class="btn primario" id="btn-imprimir">Imprimir / PDF</button>
+          </div>
+        </div>
+
+        <div id="panel-metas" class="panel metas" hidden>
+          <h3>Metas del tablero</h3>
+          <p class="nota">Las metas son supuestos editables hasta que la panadería defina las suyas (ver fichas técnicas). Se guardan en este navegador.</p>
+          <div class="metas-grid">
+            <label>% defectos máximo <input type="number" step="0.1" min="0" id="m-pctDefectos"></label>
+            <label>% aprobación mínimo <input type="number" step="0.1" min="0" id="m-pctAprobados"></label>
+            <label>% desperdicio máximo <input type="number" step="0.1" min="0" id="m-pctDesperdicio"></label>
+            <label>Productividad mínima (panes/h) <input type="number" step="0.1" min="0" id="m-productividadHora"></label>
+            <label>Tiempo promedio máximo por lote (min) <input type="number" step="1" min="0" id="m-tiempoPromedio"></label>
+          </div>
+        </div>
+
+        <p class="resumen-filtro" id="resumen-filtro"></p>
+        <div class="kpis" id="kpis"></div>
+
+        <div class="alertas panel" id="alertas"></div>
+
+        <div class="graficos">
+          <figure class="panel grafico ancho">
+            <figcaption>Producción por periodo <span class="nota">(panes aprobados y defectuosos)</span></figcaption>
+            <div class="lienzo"><canvas id="g-produccion"></canvas></div>
+          </figure>
+          <figure class="panel grafico">
+            <figcaption>% defectos y % desperdicio por periodo</figcaption>
+            <div class="lienzo"><canvas id="g-calidad"></canvas></div>
+          </figure>
+          <figure class="panel grafico">
+            <figcaption>Productividad por periodo <span class="nota">(panes/hora)</span></figcaption>
+            <div class="lienzo"><canvas id="g-productividad"></canvas></div>
+          </figure>
+          <figure class="panel grafico">
+            <figcaption>Carta de control p <span class="nota">(fracción defectuosa por lote, límites 3σ)</span></figcaption>
+            <div class="lienzo"><canvas id="g-cartap"></canvas></div>
+          </figure>
+          <figure class="panel grafico" id="fig-etapas">
+            <figcaption>Tiempo promedio por etapa <span class="nota">(min/lote)</span></figcaption>
+            <div class="lienzo"><canvas id="g-etapas"></canvas></div>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CARGAR DATOS ============ -->
+    <section id="vista-cargar" class="vista">
+      <h2>Cargar datos de producción</h2>
+      <div class="panel">
+        <label class="zona" id="zona">
+          <input type="file" id="archivo" accept=".xlsx,.xls,.xlsm,.ods,.csv,.txt" hidden>
+          <strong>Arrastre aquí el archivo o haga clic para seleccionarlo</strong>
+          <span>Formatos: Excel (.xlsx, .xls), OpenDocument (.ods) o CSV. Una fila por lote.</span>
+        </label>
+        <div class="acciones">
+          <button class="btn" id="btn-ejemplo">Usar datos de ejemplo (simulación)</button>
+          <button class="btn" id="btn-plantilla">Descargar plantilla CSV</button>
+          <button class="btn peligro" id="btn-borrar-archivo">Quitar datos del archivo</button>
+        </div>
+        <p class="nota">El archivo se procesa en su navegador; no se envía a ningún servidor. Las columnas se reconocen por su nombre
+          (p. ej. «Panes», «Panes producidos», «Defectuosos», «Tiempo total», «Material kg», «Desperdicio kg» o «Desperdicio %»).
+          Si alguna no se reconoce, puede asignarla abajo.</p>
+      </div>
+
+      <div id="carga-detalle" hidden>
+        <div class="panel">
+          <div class="fila-titulo">
+            <h3 id="carga-titulo">Archivo</h3>
+            <label id="carga-hoja-label">Hoja <select id="carga-hoja"></select></label>
+          </div>
+          <div id="carga-estado"></div>
+        </div>
+        <div class="panel">
+          <h3>Correspondencia de columnas</h3>
+          <p class="nota">Campos obligatorios: <b>Panes producidos</b> y <b>Panes defectuosos</b> (o aprobados). Los demás habilitan indicadores adicionales.</p>
+          <div class="mapeo" id="mapeo"></div>
+          <div id="mapeo-etapas"></div>
+          <div class="acciones"><button class="btn primario" id="btn-aplicar">Generar tablero con esta correspondencia</button></div>
+        </div>
+        <div class="panel">
+          <h3>Vista previa del archivo</h3>
+          <div class="tabla-scroll"><table id="vista-previa" class="tabla"></table></div>
+        </div>
+        <div class="panel" id="carga-errores-panel" hidden>
+          <h3>Filas no cargadas</h3>
+          <ul id="carga-errores" class="lista-errores"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ REGISTRAR LOTE ============ -->
+    <section id="vista-registrar" class="vista">
+      <h2>Registrar lote de producción</h2>
+      <form id="form-lote" class="panel form" novalidate>
+        <label>Fecha * <input type="date" name="fecha" required></label>
+        <label>Lote * <input type="text" name="lote" required placeholder="p. ej. L-001"></label>
+        <label>Responsable * <input type="text" name="responsable" required></label>
+        <label>Masa preparada (kg) * <input type="number" name="masa" step="0.01" min="0" required></label>
+        <label>Panes producidos * <input type="number" name="producidos" step="1" min="0" required></label>
+        <label>Panes defectuosos * <input type="number" name="defectuosos" step="1" min="0" required></label>
+        <label>Panes aprobados <input type="number" name="aprobados" readonly tabindex="-1" class="calculado"></label>
+        <label>Tiempo de producción (min) * <input type="number" name="tiempo" step="0.01" min="0" required></label>
+        <label>Materia prima utilizada (kg) * <input type="number" name="materia" step="0.01" min="0" required></label>
+        <label>Materia prima desperdiciada (kg) * <input type="number" name="desperdicio" step="0.01" min="0" required></label>
+        <div class="form-errores" id="form-errores" role="alert"></div>
+        <div class="acciones ancho">
+          <button type="submit" class="btn primario">Guardar lote</button>
+          <button type="reset" class="btn">Limpiar</button>
+        </div>
+      </form>
+      <div class="panel">
+        <h3>Lotes registrados manualmente</h3>
+        <div class="tabla-scroll"><table class="tabla" id="tabla-manuales"></table></div>
+      </div>
+    </section>
+
+    <!-- ============ DATOS ============ -->
+    <section id="vista-datos" class="vista">
+      <div class="fila-titulo">
+        <h2>Datos e indicadores por lote</h2>
+        <input type="search" id="buscar" placeholder="Buscar lote, periodo o responsable">
+      </div>
+      <p class="nota">Se aplican los mismos filtros del tablero. Cada indicador se calcula a partir de los datos del lote en la misma fila.</p>
+      <div class="panel"><div class="tabla-scroll"><table class="tabla" id="tabla-datos"></table></div></div>
+    </section>
+
+    <!-- ============ FICHAS ============ -->
+    <section id="vista-fichas" class="vista">
+      <h2>Fichas técnicas de los indicadores</h2>
+      <div class="fichas" id="fichas"></div>
+    </section>
+
+    <!-- ============ PROCESO ============ -->
+    <section id="vista-proceso" class="vista">
+      <h2>Empresa y proceso monitoreado</h2>
+      <div id="proceso"></div>
+    </section>
+
+    <!-- ============ BACKLOG ============ -->
+    <section id="vista-backlog" class="vista">
+      <div class="fila-titulo">
+        <h2>Backlog y tablero Scrum</h2>
+        <label>Sprint <select id="b-sprint"><option value="">Todos</option></select></label>
+      </div>
+      <div class="kanban" id="kanban"></div>
+      <details class="panel">
+        <summary>Agregar historia de usuario</summary>
+        <form id="form-hu" class="form">
+          <label>ID * <input name="id" required placeholder="HU-17"></label>
+          <label class="ancho">Nombre * <input name="nombre" required></label>
+          <label>Prioridad <select name="prioridad"><option>Alta</option><option selected>Media</option><option>Baja</option></select></label>
+          <label>Sprint <input name="sprint" type="number" min="1" value="3"></label>
+          <label>Puntos <input name="puntos" type="number" min="0" value="1"></label>
+          <label>Responsable <input name="responsable"></label>
+          <div class="form-errores" id="hu-errores" role="alert"></div>
+          <div class="acciones ancho"><button class="btn primario" type="submit">Agregar (estado inicial: Backlog)</button>
+            <button class="btn" type="button" id="btn-reset-backlog">Restaurar backlog original</button></div>
+        </form>
+      </details>
+    </section>
+  </main>
+
+  <footer class="pie">
+    Proyecto de aula · Gerencia de Proyectos (6350) · Universidad de Medellín · 2026-2 —
+    Juan Pablo · María Camila · Juan José · Iván Santiago
+  </footer>
+
+  <script src="vendor/chart.umd.min.js"></script>
+  <script src="vendor/xlsx.full.min.js"></script>
+  <script src="datos/ejemplo.js"></script>
+  <script src="js/importador.js"></script>
+  <script src="js/indicadores.js"></script>
+  <script src="js/contenido.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
