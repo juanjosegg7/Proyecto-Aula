@@ -94,9 +94,8 @@
   document.querySelectorAll('[data-ir]').forEach(function (b) { b.addEventListener('click', function () { irA(b.dataset.ir); }); });
 
   function actualizarCabecera() {
-    $('#fuente-actual').textContent = estado.archivo
-      ? 'Panadería San Nicolás · ' + estado.archivo.nombre
-      : 'Panadería San Nicolás · sin datos cargados';
+    var nombre = estado.archivo ? estado.archivo.nombre : 'sin datos cargados';
+    $('#fuente-actual').textContent = /^Panadería San Nicolás/.test(nombre) ? nombre : 'Panadería San Nicolás · ' + nombre;
   }
 
   // ---------- Carga del archivo ----------
