@@ -1,0 +1,29 @@
+HU-01 · estructura de la app, navegación y base de publicación en Apps Script
+Responsable: Iván Santiago · Sprint 2 · fecha del commit: 2026-10-27 (el día real en que se sube; no se cambia la fecha)
+
+Archivos de esta historia (copiar en la raíz del repositorio, respetando las carpetas; reemplazan a los anteriores):
+  Backend/Code.gs
+  Backend/appsscript.json
+  Backend/construir_index.py
+  Docs/Arquitectura.md
+  Docs/Decisiones_Tecnicas.md
+  Frontend/css/styles.css
+  Frontend/index.html
+  Frontend/js/app.js
+  README.md
+
+Pasos (en la terminal de Cursor, dentro del repositorio):
+  git checkout main
+  git pull origin main
+  git checkout -b hu-01-estructura-y-arquitectura
+  (copiar aquí el contenido de esta carpeta, menos COMMIT.txt)
+  (abrir Frontend/index.html con doble clic y revisar; las pruebas automáticas empiezan en HU-04)
+  git add -A
+  git commit -m "feat(HU-01): estructura de la app, navegación y base de publicación en Apps Script"
+  git push -u origin hu-01-estructura-y-arquitectura
+  → En GitHub: Compare & pull request → base: main → Create pull request.
+  → Juan Pablo (Scrum Master, dueño del repositorio) revisa y hace Merge.
+  → María Camila (QA) prueba la historia y mueve la tarjeta en Trello.
+
+IMPORTANTE: los paquetes se aplican EN ORDEN (HU-01, HU-02, …). Antes de aplicar el suyo,
+el paquete anterior ya debe estar en main (git pull origin main).

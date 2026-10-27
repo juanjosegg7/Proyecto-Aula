@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>Guía 1 · Construir la app en GitHub historia por historia</title><link rel="stylesheet" href="estilo.css"><style>table.t td:first-child b{white-space:nowrap}</style></head>
+<body>
+<h1>Guía 1 · Construir la app en GitHub, historia por historia</h1>
+<p class="sub">Tablero de Indicadores · Panadería San Nicolás — repositorio <code>jpablovlsqz16/Proyecto-de-aula-gerencia-</code> (estructura Frontend / Backend / Docs)</p>
+
+<div class="portada"><table>
+<tr><td>Resultado</td><td>El historial de Git muestra la app creciendo desde cero hasta el prototipo final: 16 commits, uno por historia de usuario, cada uno hecho por su responsable en la fecha real.</td></tr>
+<tr><td>Material</td><td>Carpeta <b>paquetes/</b>: una subcarpeta por historia (<code>HU-01-…</code> a <code>HU-16-…</code>) con los archivos que esa historia crea o cambia y un <code>COMMIT.txt</code> con los comandos exactos.</td></tr>
+<tr><td>Necesitan</td><td>Computador con Git, Cursor (o VS Code) y Node.js 18+; cuenta de GitHub agregada como colaborador del repositorio.</td></tr>
+<tr><td>Regla de oro</td><td>Los paquetes se aplican <b>en orden</b>. Cada historia se integra a <code>main</code> antes de empezar la siguiente.</td></tr>
+</table></div>
+
+<h2>1. Por qué se hace así</h2>
+<p>El docente observó que el código no estaba en el repositorio y que no había commits en las fechas de los sprints. Con este método cada integrante sube <b>su</b> parte, en <b>su</b> computador, el día en que le corresponde. Las fechas de los commits son las reales: <b>nunca</b> se cambian fechas ni se reescribe el historial.</p>
+<p>Cada paquete trae <b>archivos completos</b>, no fragmentos. Cuando una historia cambia un archivo que ya existía (por ejemplo <code>Frontend/js/app.js</code>), el paquete trae la versión nueva completa y se reemplaza la anterior. Por eso el orden importa.</p>
+
+<h2>2. Cronograma de commits</h2>
+<table class="t">
+<tr><th>HU</th><th>Qué agrega</th><th>Responsable</th><th>Fecha</th><th>Rama</th></tr>
+<tr><td><b>HU-01</b></td><td>estructura de la app, navegación y base de publicación en Apps Script</td><td>Iván Santiago</td><td>mar 27 oct</td><td><code>hu-01-estructura-y-arquitectura</code></td></tr><tr><td><b>HU-02</b></td><td>plantilla de Excel y diccionario de datos</td><td>Juan José</td><td>mar 27 oct</td><td><code>hu-02-plantilla-y-diccionario</code></td></tr><tr><td><b>HU-03</b></td><td>simulación de Montecarlo de septiembre de 2026</td><td>María Camila</td><td>mar 27 oct</td><td><code>hu-03-datos-simulados</code></td></tr><tr><td><b>HU-04</b></td><td>leer el libro de Excel en el navegador</td><td>Juan José</td><td>mar 27 oct</td><td><code>hu-04-leer-excel</code></td></tr><tr><td><b>HU-05</b></td><td>reconocer las tablas por sus columnas y validar filas</td><td>Iván Santiago</td><td>mar 27 oct</td><td><code>hu-05-reconocer-y-validar-tablas</code></td></tr><tr><td><b>HU-06</b></td><td>OEE del horno — prototipo v0 publicado en Apps Script</td><td>Iván Santiago</td><td>mar 27 oct</td><td><code>hu-06-oee-horno-prototipo-v0</code></td></tr><tr><td><b>HU-07</b></td><td>SLA de pedidos (OTIF)</td><td>Juan José</td><td>mié 28 oct</td><td><code>hu-07-sla-pedidos</code></td></tr><tr><td><b>HU-08</b></td><td>% de producto no vendido</td><td>Juan José</td><td>mié 28 oct</td><td><code>hu-08-porcentaje-no-vendido</code></td></tr><tr><td><b>HU-09</b></td><td>productividad de mano de obra</td><td>Juan José</td><td>mié 28 oct</td><td><code>hu-09-productividad-mano-obra</code></td></tr><tr><td><b>HU-10</b></td><td>semáforos y metas de las fichas técnicas</td><td>Juan José</td><td>mié 28 oct</td><td><code>hu-10-semaforos-y-metas</code></td></tr><tr><td><b>HU-11</b></td><td>filtros por fechas, turno y equipo</td><td>Iván Santiago</td><td>mié 28 oct</td><td><code>hu-11-filtros</code></td></tr><tr><td><b>HU-12</b></td><td>gráficos del tablero</td><td>Iván Santiago</td><td>jue 29 oct</td><td><code>hu-12-graficos</code></td></tr><tr><td><b>HU-13</b></td><td>hallazgos automáticos</td><td>Juan José</td><td>jue 29 oct</td><td><code>hu-13-hallazgos</code></td></tr><tr><td><b>HU-14</b></td><td>exportar CSV e imprimir el tablero</td><td>Juan José</td><td>jue 29 oct</td><td><code>hu-14-exportar-e-imprimir</code></td></tr><tr><td><b>HU-15</b></td><td>plan de pruebas y verificación con un archivo distinto (octubre)</td><td>María Camila</td><td>jue 29 oct</td><td><code>hu-15-pruebas-archivo-distinto</code></td></tr><tr><td><b>HU-16</b></td><td>prototipo final publicado en Apps Script y GitHub Pages; manual de usuario</td><td>Iván Santiago</td><td>jue 29 oct</td><td><code>hu-16-prototipo-final</code></td></tr>
+</table>
+<div class="nota"><b>Hitos:</b> al terminar HU-06 queda el <b>prototipo v0</b> (OEE del horno) publicado en Google Apps Script; al terminar HU-16, el <b>prototipo final</b>. Si un integrante no puede el día asignado, otro lo hace y se anota en el Daily Scrum; lo que no se hace es cambiar la fecha del commit.</div>
+
+<h2>3. Preparar el computador (una sola vez, cada integrante)</h2>
+<ol>
+<li>Instalar <b>Git</b> (git-scm.com), <b>Node.js LTS</b> (nodejs.org) y <b>Cursor</b> (cursor.com).</li>
+<li>Juan Pablo agrega a los demás como colaboradores: GitHub → repositorio → <b>Settings → Collaborators → Add people</b>. Cada uno acepta la invitación desde su correo.</li>
+<li>En Cursor: <b>Terminal → New Terminal</b> y escribir (con el nombre y correo de cada uno, el mismo de su cuenta de GitHub):</li>
+</ol>
+<pre>git config --global user.name "Iván Santiago"
+git config --global user.email "correo-de-github@ejemplo.com"
+git clone https://github.com/jpablovlsqz16/Proyecto-de-aula-gerencia-.git
+cd Proyecto-de-aula-gerencia-</pre>
+<ol start="4"><li>En Cursor: <b>File → Open Folder</b> → la carpeta <code>Proyecto-de-aula-gerencia-</code>.</li></ol>
+<div class="nota">El nombre y el correo de <code>git config</code> son los que aparecen como autor del commit. Si el correo no coincide con el de GitHub, el commit no queda asociado al perfil del integrante.</div>
+
+<h2>4. Subir una historia (lo mismo para las 16)</h2>
+<p>Ejemplo con la HU-01. Los comandos exactos de cada historia están en su <code>COMMIT.txt</code>.</p>
+<h3>4.1 Traer lo último de main y crear la rama</h3>
+<pre>git checkout main
+git pull origin main
+git checkout -b hu-01-estructura-y-arquitectura</pre>
+<h3>4.2 Copiar los archivos del paquete</h3>
+<ol>
+<li>Abrir la carpeta del paquete (por ejemplo <code>paquetes/HU-01-estructura-y-arquitectura/</code>).</li>
+<li>Copiar <b>todo su contenido menos COMMIT.txt</b> y pegarlo en la raíz del repositorio. Cuando Windows pregunte, elegir <b>Reemplazar los archivos en el destino</b>.</li>
+<li>En Cursor, el panel <b>Source Control</b> (ícono de ramas) muestra los archivos nuevos (U) y modificados (M). Deben ser exactamente los que lista <code>COMMIT.txt</code>.</li>
+</ol>
+<h3>4.3 Probar</h3>
+<pre>npm test        <span class="c"># desde HU-04; en HU-01 a HU-03 basta abrir Frontend/index.html</span></pre>
+<p>Abrir <code>Frontend/index.html</code> con doble clic y revisar lo que la historia agrega (sus criterios de aceptación están en el Word de historias de usuario).</p>
+<h3>4.4 Commit y push</h3>
+<pre>git add -A
+git commit -m "feat(HU-01): estructura de la app, navegación y base de publicación en Apps Script"
+git push -u origin hu-01-estructura-y-arquitectura</pre>
+<h3>4.5 Pull Request y merge</h3>
+<ol>
+<li>En GitHub aparece <b>Compare &amp; pull request</b>. Base: <code>main</code>. Título: el mismo mensaje del commit. Descripción: «Cumple los criterios de aceptación de la HU-01» y la lista de lo que se probó.</li>
+<li><b>Juan Pablo</b> (Scrum Master y dueño del repositorio) revisa los archivos y hace <b>Merge pull request</b>.</li>
+<li><b>María Camila</b> (QA) prueba la historia en <code>main</code> y mueve la tarjeta en Trello: <i>En revisión QA → Terminado</i>.</li>
+<li>Avisar en el grupo: «HU-01 en main». El siguiente responsable empieza desde el paso 4.1.</li>
+</ol>
+
+<h2>5. Historias con publicación en Google Apps Script</h2>
+<ul>
+<li><b>HU-06 (prototipo v0):</b> después del merge, Iván crea el proyecto en script.google.com, pega <code>Backend/Code.gs</code> y <code>Backend/Index.html</code> e implementa la aplicación web (Guía 3). La URL <code>/exec</code> va al informe.</li>
+<li><b>HU-16 (prototipo final):</b> se pega el nuevo <code>Backend/Index.html</code> y se crea una <b>nueva versión</b> de la misma implementación: la URL no cambia. Pegar la URL en el README (línea «Aplicación (Google Apps Script)») en un commit aparte: <code>docs: enlace de la app en Google Apps Script</code>.</li>
+<li><b>GitHub Pages</b> (HU-16): Settings → Pages → Branch <code>main</code>, carpeta <code>/ (root)</code> → Save. A los minutos queda en <code>https://jpablovlsqz16.github.io/Proyecto-de-aula-gerencia-/</code>.</li>
+</ul>
+
+<h2>6. Problemas comunes</h2>
+<table class="t">
+<tr><th>Síntoma</th><th>Solución</th></tr>
+<tr><td><code>git push</code> pide usuario y contraseña o da 403</td><td>Aceptar la invitación de colaborador. En Cursor, iniciar sesión con GitHub cuando lo pida (la contraseña ya no sirve; se usa el navegador o un token).</td></tr>
+<tr><td>Source Control muestra archivos que no están en COMMIT.txt</td><td>Faltó <code>git pull origin main</code> o se aplicó un paquete fuera de orden. Descartar los cambios (<code>git checkout -- .</code>), volver al paso 4.1 y verificar que la historia anterior ya esté en main.</td></tr>
+<tr><td>El Pull Request dice que hay conflictos</td><td>Pasa si alguien editó en main los mismos archivos. En la rama: <code>git pull origin main</code>, abrir los archivos marcados y quedarse con la versión del paquete; luego <code>git add -A</code>, <code>git commit</code> y <code>git push</code>.</td></tr>
+<tr><td><code>npm test</code> falla</td><td>No hacer el commit. Revisar que se copiaron todos los archivos del paquete en las carpetas correctas (la carpeta <code>Tests/</code> con T mayúscula) y avisar al grupo con el mensaje de error.</td></tr>
+<tr><td><code>npm</code> no se reconoce</td><td>Instalar Node.js LTS y cerrar y abrir Cursor.</td></tr>
+</table>
+
+<h2>7. Lista de verificación final (29 oct.)</h2>
+<ul class="check">
+<li>Los 16 Pull Requests están en main, cada uno con el autor y la fecha reales.</li>
+<li><code>npm test</code> en main: 33 pruebas aprobadas.</li>
+<li>La URL <code>/exec</code> de Apps Script abre el prototipo final y genera el tablero con el archivo de octubre.</li>
+<li>GitHub Pages abre la misma app.</li>
+<li>Trello: las 16 tarjetas en «Terminado» después de la QA.</li>
+<li>El informe (Word de historias de usuario y desarrollo) usa la misma numeración que el repositorio.</li>
+</ul>
+</body></html>

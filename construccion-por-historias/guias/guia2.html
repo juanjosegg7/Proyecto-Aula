@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>Guía 2 · Explicación del trabajo</title><link rel="stylesheet" href="estilo.css"></head>
+<body>
+<h1>Guía 2 · Explicación de todo el trabajo</h1>
+<p class="sub">Tablero de Indicadores · Panadería San Nicolás (pan trenza) — Proyecto de Aula 2026-2, Gerencia de Proyectos · estado al 27 de octubre de 2026</p>
+
+<div class="portada"><table>
+<tr><td>En una frase</td><td>La app se construye <b>desde cero en el repositorio</b>, una historia de usuario por commit, del 27 al 29 de octubre: prototipo v0 (OEE del horno) el martes 27 y prototipo final el jueves 29, ambos publicados en Google Apps Script.</td></tr>
+<tr><td>Qué está listo</td><td>El código de las 16 historias, en paquetes listos para subir; 33 pruebas automáticas; documentación técnica en <code>Docs/</code>; el Word de historias de usuario; datos simulados de septiembre y octubre.</td></tr>
+<tr><td>Qué falta</td><td>Que cada integrante suba su paquete en su fecha (Guía 1), publicar en Apps Script (Guía 3), la QA de María Camila y ensayar la demostración.</td></tr>
+</table></div>
+
+<h2>1. Qué cambió y por qué</h2>
+<p>Las historias anteriores estaban escritas como si la app ya existiera («ver el OEE», «filtrar»…), y el código se iba a subir de una sola vez. Eso no cumple lo que pide la guía: el historial de commits es la evidencia de los sprints. Ahora:</p>
+<ul>
+<li>Las <b>historias describen la construcción</b>: HU-01 crea la estructura vacía; HU-04 enseña a la app a leer el Excel; HU-06 calcula el OEE; …; HU-16 publica la versión final.</li>
+<li>Cada historia es <b>un commit</b> con los archivos que realmente agrega, hecho por su responsable en la fecha real. Nada de cambiar fechas.</li>
+<li>La app vive en la estructura que el equipo ya creó en main: <code>Frontend/</code>, <code>Backend/</code> (Google Apps Script) y <code>Docs/</code>, más <code>Simulacion/</code> y <code>Tests/</code>.</li>
+<li><b>Redacción mixta:</b> las historias de la base técnica se escriben desde el equipo («Como equipo de desarrollo, necesitamos…») y las de lo que ve la panadería desde el administrador («Como administrador de la panadería, quiero…»).</li>
+</ul>
+
+<h2>2. Cómo crece la app</h2>
+<table class="t">
+<tr><th>Historia</th><th>Qué se ve en la app al terminarla</th></tr>
+<tr><td>HU-01 Estructura y arquitectura</td><td>Página con Tablero y Cargar datos, vacía. README corregido (sin Google Sheets).</td></tr>
+<tr><td>HU-02 Plantilla y diccionario</td><td>Botón «Descargar plantilla de Excel».</td></tr>
+<tr><td>HU-03 Datos simulados</td><td>Botón «Descargar datos simulados» (septiembre de 2026).</td></tr>
+<tr><td>HU-04 Leer el Excel</td><td>Zona para arrastrar el archivo; muestra las hojas y sus filas. Primeras pruebas automáticas.</td></tr>
+<tr><td>HU-05 Reconocer y validar</td><td>Tablas reconocidas, conteos y filas con errores; «Quitar datos cargados».</td></tr>
+<tr><td><b>HU-06 OEE del horno</b></td><td><b>Prototipo v0:</b> el tablero aparece con OEE, disponibilidad, rendimiento y calidad. Publicado en Apps Script.</td></tr>
+<tr><td>HU-07 · HU-08 · HU-09</td><td>Tarjetas de SLA, % no vendido y productividad.</td></tr>
+<tr><td>HU-10 Semáforos y metas</td><td>Colores de las fichas técnicas y botón «Metas».</td></tr>
+<tr><td>HU-11 Filtros</td><td>Desde, Hasta, Turno (y Equipo si hay varias máquinas).</td></tr>
+<tr><td>HU-12 Gráficos</td><td>OEE por día, cascada, Pareto, cliente por día, productividad y OEE por turno.</td></tr>
+<tr><td>HU-13 Hallazgos</td><td>Frases automáticas con lo más importante.</td></tr>
+<tr><td>HU-14 Exportar e imprimir</td><td>Botones «Exportar CSV» e «Imprimir / PDF».</td></tr>
+<tr><td>HU-15 Archivo distinto</td><td>Nada nuevo en pantalla: prueba con octubre y plan de pruebas.</td></tr>
+<tr><td><b>HU-16 Prototipo final</b></td><td><b>Prototipo final</b> en Apps Script y GitHub Pages; manual de usuario.</td></tr>
+</table>
+<p>Cada etapa se probó en el navegador sin errores, y desde la HU-04 las pruebas automáticas pasan en cada commit: 3, 9, 14, 17, 20, 22, 25, 28, 31 y 33.</p>
+
+<h2>3. Arquitectura</h2>
+<pre>Libro de Excel ─► Navegador: SheetJS + lectura.js ─► modelo.js ─► indicadores.js ─► app.js + Chart.js (tablero)
+Google Apps Script (Backend/Code.gs) y GitHub Pages solo entregan la página.</pre>
+<table class="t">
+<tr><th>Archivo</th><th>Qué hace</th><th>HU</th></tr>
+<tr><td><code>Frontend/index.html</code>, <code>css/</code></td><td>La página: Tablero y Cargar datos</td><td>01</td></tr>
+<tr><td><code>Frontend/js/app.js</code></td><td>La pantalla: carga, tarjetas, metas, filtros, gráficos, hallazgos, exportar</td><td>01 a 14</td></tr>
+<tr><td><code>Frontend/js/lectura.js</code></td><td>Convierte textos, números con coma decimal y fechas de Excel</td><td>04</td></tr>
+<tr><td><code>Frontend/js/modelo.js</code></td><td>Reconoce cada tabla por sus columnas, valida las filas y une Dim con Fact</td><td>05</td></tr>
+<tr><td><code>Frontend/js/indicadores.js</code></td><td>Tiempos por turno, OEE, SLA, % no vendido, productividad, filtros, Pareto, semáforo</td><td>06 a 12</td></tr>
+<tr><td><code>Frontend/vendor/</code></td><td>SheetJS (leer Excel) y Chart.js (gráficos): libres, incluidas para funcionar sin internet</td><td>04, 12</td></tr>
+<tr><td><code>Backend/</code></td><td><code>Code.gs</code> (doGet), <code>appsscript.json</code>, <code>construir_index.py</code> y el <code>Index.html</code> generado</td><td>01, 06, 16</td></tr>
+<tr><td><code>Simulacion/</code></td><td>Montecarlo en Python y archivo de octubre</td><td>03, 15</td></tr>
+<tr><td><code>Tests/</code></td><td>Un archivo de pruebas por historia</td><td>04 a 15</td></tr>
+</table>
+<p><b>Por qué esta tecnología</b> (lo que pidió el docente): costo $0, todo libre (MIT y Apache 2.0), el mismo JavaScript que el equipo ya usaba en Apps Script, sin depender de Google Sheets ni de la cuenta de un integrante, y el repositorio contiene todo. Apps Script se mantiene <b>solo para servir la página</b>: el código no vive allá, se genera desde el repositorio. Matriz ponderada en <code>Docs/Decisiones_Tecnicas.md</code>: 4,65 frente a 2,65 de Apps Script + Sheets.</p>
+
+<h2>4. Datos, indicadores y semáforos</h2>
+<p>El Excel tiene tablas de dimensiones (producto PR_01: 22 min por tanda de 16 trenzas; turnos T1 y T2 de 480 min con 30 de descanso; motivos de paro MP_01 a MP_08; operarios) y de hechos (producción por tanda, paros, pedidos, ventas del día y mano de obra). Detalle en <code>Docs/Diccionario_Datos.md</code>.</p>
+<table class="t">
+<tr><th>Indicador</th><th>Fórmula</th><th>Verde</th><th>Rojo</th></tr>
+<tr><td>Disponibilidad</td><td>operativo ÷ programado; programado = 480 − 30 − paros planeados (MP_01, 02, 03, 08)</td><td>≥ 90 %</td><td>&lt; 80 %</td></tr>
+<tr><td>Rendimiento</td><td>Σ(unidades × 1,375 min) ÷ tiempo operativo</td><td>≥ 80 %</td><td>&lt; 70 %</td></tr>
+<tr><td>Calidad</td><td>buenas ÷ producidas</td><td>≥ 95 %</td><td>&lt; 90 %</td></tr>
+<tr><td>OEE del horno</td><td>A × R × Q</td><td>≥ 65 %</td><td>&lt; 55 %</td></tr>
+<tr><td>SLA (OTIF)</td><td>pedidos a tiempo y completos ÷ pedidos</td><td>≥ 95 %</td><td>&lt; 90 %</td></tr>
+<tr><td>% no vendido</td><td>(buenas − vendidas) ÷ buenas, por día</td><td>≤ 10 %</td><td>&gt; 15 %</td></tr>
+<tr><td>Productividad</td><td>buenas ÷ horas-hombre</td><td>≥ línea base + 5 %</td><td>&lt; línea base</td></tr>
+</table>
+<p>Los consolidados suman tiempos y unidades antes de dividir; no se promedian porcentajes.</p>
+
+<h2>5. Datos simulados (autorizados por el docente)</h2>
+<p><code>Simulacion/simular_datos.py</code> aplica <code>Docs/Supuestos_Simulacion.md</code>: Montecarlo de los días hábiles × 2 turnos con Poisson, binomial, normal, lognormal, triangular y uniforme, con semilla fija. Cada libro trae una hoja <i>Verificacion</i> calculada aparte, y las pruebas comprueban que la app da exactamente lo mismo.</p>
+<table class="t">
+<tr><th>Indicador</th><th>Septiembre (desarrollo)</th><th>Octubre (archivo distinto)</th></tr>
+<tr><td>OEE (A · R · Q)</td><td>67,7 % (89,9 · 78,6 · 95,8)</td><td>71,1 % (93,7 · 78,8 · 96,3)</td></tr>
+<tr><td>SLA</td><td>92,1 %</td><td>87,7 %</td></tr>
+<tr><td>% no vendido</td><td>2,3 %</td><td>3,7 %</td></tr>
+<tr><td>Productividad</td><td>8,03 trenzas/h-h</td><td>8,42 trenzas/h-h</td></tr>
+</table>
+<p>El % no vendido sale menor que el 8–10 % esperado porque el colchón del 10 % se aplica solo a la demanda de mostrador; es una inconsistencia de los supuestos, no de la app.</p>
+
+<h2>6. Respuesta a las observaciones del docente</h2>
+<table class="t">
+<tr><th>Observación</th><th>Cómo se corrige</th></tr>
+<tr><td>El código no está en el repositorio</td><td>Las 16 historias suben el código a <code>Frontend/</code> y <code>Backend/</code>, con pruebas en <code>Tests/</code></td></tr>
+<tr><td>No hay commits en las fechas de los sprints</td><td>Se reconoce sin falsificar fechas: desde el 27 de octubre cada historia es un commit y un Pull Request del responsable, en la fecha real</td></tr>
+<tr><td>HU de documentación y varias numeraciones</td><td>Las historias del Word describen la construcción de la app (ver sección 8 sobre la numeración)</td></tr>
+<tr><td>Trello no refleja la QA</td><td>Una tarjeta solo pasa a «Terminado» cuando QA prueba la historia en main</td></tr>
+<tr><td>Sustentación débil</td><td>Arquitectura en <code>Docs/Arquitectura.md</code>; demostración con la app real y el archivo del docente</td></tr>
+<tr><td>Justificar Apps Script / Sheets</td><td>Matriz ponderada por costo, licencias, curva, dependencia y sostenibilidad; Sheets se elimina y Apps Script solo sirve la página</td></tr>
+</table>
+
+<h2>7. Archivos entregados</h2>
+<table class="t">
+<tr><th>Archivo</th><th>Para qué</th></tr>
+<tr><td><code>Paquetes_por_historia.zip</code></td><td>Las 16 carpetas para subir en orden (Guía 1)</td></tr>
+<tr><td><code>Historias_de_Usuario_Construccion_App.docx</code></td><td>Anexo del informe: las 16 historias con criterios, fecha y evidencia en el repositorio</td></tr>
+<tr><td>Guías 1, 2 y 3 (PDF)</td><td>Subir a GitHub, entender el trabajo y publicar en Apps Script</td></tr>
+<tr><td>Excel de septiembre, octubre y plantilla</td><td>Probar la app y ensayar la demostración</td></tr>
+</table>
+
+<h2>8. Decisión pendiente: la numeración</h2>
+<div class="alerta">En main, <code>Docs/Sprint_Planning.md</code> usa <b>HU-01 a HU-26</b> para tareas del informe (SIPOC, PESTEL, financiación…), y las historias de la app también son HU-01 a HU-16. Si quedan así, los números chocan, que es justo lo que observó el docente. Opciones: (a) renombrar las del informe como entregables <b>E-01 a E-26</b> en Sprint_Planning y en el Word de la segunda entrega (recomendado: son paquetes de la EDT, no historias de usuario); o (b) numerar las de la app como HU-27 a HU-42. Hay que decidirlo antes de subir la HU-01.</div>
+
+<h2>9. Preparación de la sustentación</h2>
+<ul>
+<li>Mostrar la app real: la URL <code>/exec</code> de Apps Script (o GitHub Pages). Plan B: abrir <code>Frontend/index.html</code> sin internet.</li>
+<li>Arquitectura en 2 minutos: «Corre en el navegador; reconoce las tablas del Excel por sus columnas, valida y calcula los cuatro indicadores; Apps Script solo sirve la página; 33 pruebas comparan con cálculos independientes».</li>
+<li>Mostrar el historial de Git: un commit por historia, del prototipo v0 al final.</li>
+<li>Demo: Cargar datos → archivo del docente → Tablas reconocidas → Tablero → filtrar turno → Pareto y cascada → decisión de mejora.</li>
+</ul>
+</body></html>

@@ -1,0 +1,29 @@
+HU-16 · prototipo final publicado en Apps Script y GitHub Pages; manual de usuario
+Responsable: Iván Santiago · Sprint 3 · fecha del commit: 2026-10-29 (el día real en que se sube; no se cambia la fecha)
+
+Archivos de esta historia (copiar en la raíz del repositorio, respetando las carpetas; reemplazan a los anteriores):
+  Backend/Index.html
+  Docs/Manual_Usuario.md
+  README.md
+  index.html
+
+Pasos (en la terminal de Cursor, dentro del repositorio):
+  git checkout main
+  git pull origin main
+  git checkout -b hu-16-prototipo-final
+  (copiar aquí el contenido de esta carpeta, menos COMMIT.txt)
+  npm test                     # deben pasar todas las pruebas
+  git add -A
+  git commit -m "feat(HU-16): prototipo final publicado en Apps Script y GitHub Pages; manual de usuario"
+  git push -u origin hu-16-prototipo-final
+  → En GitHub: Compare & pull request → base: main → Create pull request.
+  → Juan Pablo (Scrum Master, dueño del repositorio) revisa y hace Merge.
+  → María Camila (QA) prueba la historia y mueve la tarjeta en Trello.
+
+Publicación en Google Apps Script (después del merge; ver Guía 3):
+  → Backend/Index.html ya viene generado en este paquete (python Backend/construir_index.py).
+  → script.google.com → proyecto «Tablero Pan Trenza» → pegar Code.gs e Index.html → Implementar.
+  → Gestionar implementaciones → editar → Nueva versión (la URL /exec no cambia). Pegar la URL en el README.
+
+IMPORTANTE: los paquetes se aplican EN ORDEN (HU-01, HU-02, …). Antes de aplicar el suyo,
+el paquete anterior ya debe estar en main (git pull origin main).

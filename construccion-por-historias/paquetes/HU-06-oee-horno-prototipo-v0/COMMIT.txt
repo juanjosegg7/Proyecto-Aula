@@ -1,0 +1,30 @@
+HU-06 · OEE del horno — prototipo v0 publicado en Apps Script
+Responsable: Iván Santiago · Sprint 2 · fecha del commit: 2026-10-27 (el día real en que se sube; no se cambia la fecha)
+
+Archivos de esta historia (copiar en la raíz del repositorio, respetando las carpetas; reemplazan a los anteriores):
+  Backend/Index.html
+  Frontend/index.html
+  Frontend/js/app.js
+  Frontend/js/indicadores.js
+  Tests/oee.test.js
+
+Pasos (en la terminal de Cursor, dentro del repositorio):
+  git checkout main
+  git pull origin main
+  git checkout -b hu-06-oee-horno-prototipo-v0
+  (copiar aquí el contenido de esta carpeta, menos COMMIT.txt)
+  npm test                     # deben pasar todas las pruebas
+  git add -A
+  git commit -m "feat(HU-06): OEE del horno — prototipo v0 publicado en Apps Script"
+  git push -u origin hu-06-oee-horno-prototipo-v0
+  → En GitHub: Compare & pull request → base: main → Create pull request.
+  → Juan Pablo (Scrum Master, dueño del repositorio) revisa y hace Merge.
+  → María Camila (QA) prueba la historia y mueve la tarjeta en Trello.
+
+Publicación en Google Apps Script (después del merge; ver Guía 3):
+  → Backend/Index.html ya viene generado en este paquete (python Backend/construir_index.py).
+  → script.google.com → proyecto «Tablero Pan Trenza» → pegar Code.gs e Index.html → Implementar.
+  → Primera vez: Nueva implementación → Aplicación web → Cualquier usuario. Copiar la URL /exec en el informe.
+
+IMPORTANTE: los paquetes se aplican EN ORDEN (HU-01, HU-02, …). Antes de aplicar el suyo,
+el paquete anterior ya debe estar en main (git pull origin main).

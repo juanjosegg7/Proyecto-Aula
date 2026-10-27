@@ -1,0 +1,23 @@
+HU-02 · plantilla de Excel y diccionario de datos
+Responsable: Juan José · Sprint 2 · fecha del commit: 2026-10-27 (el día real en que se sube; no se cambia la fecha)
+
+Archivos de esta historia (copiar en la raíz del repositorio, respetando las carpetas; reemplazan a los anteriores):
+  Docs/Diccionario_Datos.md
+  Frontend/datos/Base_Panaderia_Indicadores_plantilla.xlsx
+  Frontend/index.html
+
+Pasos (en la terminal de Cursor, dentro del repositorio):
+  git checkout main
+  git pull origin main
+  git checkout -b hu-02-plantilla-y-diccionario
+  (copiar aquí el contenido de esta carpeta, menos COMMIT.txt)
+  (abrir Frontend/index.html con doble clic y revisar; las pruebas automáticas empiezan en HU-04)
+  git add -A
+  git commit -m "feat(HU-02): plantilla de Excel y diccionario de datos"
+  git push -u origin hu-02-plantilla-y-diccionario
+  → En GitHub: Compare & pull request → base: main → Create pull request.
+  → Juan Pablo (Scrum Master, dueño del repositorio) revisa y hace Merge.
+  → María Camila (QA) prueba la historia y mueve la tarjeta en Trello.
+
+IMPORTANTE: los paquetes se aplican EN ORDEN (HU-01, HU-02, …). Antes de aplicar el suyo,
+el paquete anterior ya debe estar en main (git pull origin main).

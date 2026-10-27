@@ -1,0 +1,245 @@
+[
+ {
+  "n": 1,
+  "slug": "estructura-y-arquitectura",
+  "autor": "Iván Santiago",
+  "fecha": "2026-10-27",
+  "sprint": 2,
+  "mensaje": "feat(HU-01): estructura de la app, navegación y base de publicación en Apps Script",
+  "rama": "hu-01-estructura-y-arquitectura",
+  "archivos": [
+   "Backend/Code.gs",
+   "Backend/appsscript.json",
+   "Backend/construir_index.py",
+   "Docs/Arquitectura.md",
+   "Docs/Decisiones_Tecnicas.md",
+   "Frontend/css/styles.css",
+   "Frontend/index.html",
+   "Frontend/js/app.js",
+   "README.md"
+  ]
+ },
+ {
+  "n": 2,
+  "slug": "plantilla-y-diccionario",
+  "autor": "Juan José",
+  "fecha": "2026-10-27",
+  "sprint": 2,
+  "mensaje": "feat(HU-02): plantilla de Excel y diccionario de datos",
+  "rama": "hu-02-plantilla-y-diccionario",
+  "archivos": [
+   "Docs/Diccionario_Datos.md",
+   "Frontend/datos/Base_Panaderia_Indicadores_plantilla.xlsx",
+   "Frontend/index.html"
+  ]
+ },
+ {
+  "n": 3,
+  "slug": "datos-simulados",
+  "autor": "María Camila",
+  "fecha": "2026-10-27",
+  "sprint": 2,
+  "mensaje": "feat(HU-03): simulación de Montecarlo de septiembre de 2026",
+  "rama": "hu-03-datos-simulados",
+  "archivos": [
+   "Frontend/datos/Base_Panaderia_Indicadores_2026-09.xlsx",
+   "Frontend/datos/ejemplo-panaderia.js",
+   "Frontend/index.html",
+   "Simulacion/exportar_ejemplo.py",
+   "Simulacion/simular_datos.py"
+  ]
+ },
+ {
+  "n": 4,
+  "slug": "leer-excel",
+  "autor": "Juan José",
+  "fecha": "2026-10-27",
+  "sprint": 2,
+  "mensaje": "feat(HU-04): leer el libro de Excel en el navegador",
+  "rama": "hu-04-leer-excel",
+  "archivos": [
+   "Frontend/index.html",
+   "Frontend/js/app.js",
+   "Frontend/js/lectura.js",
+   "Frontend/vendor/xlsx.full.min.js",
+   "Tests/lectura.test.js",
+   "package.json"
+  ]
+ },
+ {
+  "n": 5,
+  "slug": "reconocer-y-validar-tablas",
+  "autor": "Iván Santiago",
+  "fecha": "2026-10-27",
+  "sprint": 2,
+  "mensaje": "feat(HU-05): reconocer las tablas por sus columnas y validar filas",
+  "rama": "hu-05-reconocer-y-validar-tablas",
+  "archivos": [
+   "Frontend/index.html",
+   "Frontend/js/app.js",
+   "Frontend/js/modelo.js",
+   "Tests/comun.js",
+   "Tests/datos-base-oee-curso.js",
+   "Tests/modelo.test.js"
+  ]
+ },
+ {
+  "n": 6,
+  "slug": "oee-horno-prototipo-v0",
+  "autor": "Iván Santiago",
+  "fecha": "2026-10-27",
+  "sprint": 2,
+  "mensaje": "feat(HU-06): OEE del horno — prototipo v0 publicado en Apps Script",
+  "rama": "hu-06-oee-horno-prototipo-v0",
+  "archivos": [
+   "Backend/Index.html",
+   "Frontend/index.html",
+   "Frontend/js/app.js",
+   "Frontend/js/indicadores.js",
+   "Tests/oee.test.js"
+  ]
+ },
+ {
+  "n": 7,
+  "slug": "sla-pedidos",
+  "autor": "Juan José",
+  "fecha": "2026-10-28",
+  "sprint": 3,
+  "mensaje": "feat(HU-07): SLA de pedidos (OTIF)",
+  "rama": "hu-07-sla-pedidos",
+  "archivos": [
+   "Frontend/js/app.js",
+   "Frontend/js/indicadores.js",
+   "Tests/sla.test.js"
+  ]
+ },
+ {
+  "n": 8,
+  "slug": "porcentaje-no-vendido",
+  "autor": "Juan José",
+  "fecha": "2026-10-28",
+  "sprint": 3,
+  "mensaje": "feat(HU-08): % de producto no vendido",
+  "rama": "hu-08-porcentaje-no-vendido",
+  "archivos": [
+   "Frontend/js/app.js",
+   "Frontend/js/indicadores.js",
+   "Tests/no-vendido.test.js"
+  ]
+ },
+ {
+  "n": 9,
+  "slug": "productividad-mano-obra",
+  "autor": "Juan José",
+  "fecha": "2026-10-28",
+  "sprint": 3,
+  "mensaje": "feat(HU-09): productividad de mano de obra",
+  "rama": "hu-09-productividad-mano-obra",
+  "archivos": [
+   "Frontend/js/app.js",
+   "Frontend/js/indicadores.js",
+   "Tests/productividad.test.js"
+  ]
+ },
+ {
+  "n": 10,
+  "slug": "semaforos-y-metas",
+  "autor": "Juan José",
+  "fecha": "2026-10-28",
+  "sprint": 3,
+  "mensaje": "feat(HU-10): semáforos y metas de las fichas técnicas",
+  "rama": "hu-10-semaforos-y-metas",
+  "archivos": [
+   "Frontend/index.html",
+   "Frontend/js/app.js",
+   "Frontend/js/indicadores.js",
+   "Tests/semaforo.test.js"
+  ]
+ },
+ {
+  "n": 11,
+  "slug": "filtros",
+  "autor": "Iván Santiago",
+  "fecha": "2026-10-28",
+  "sprint": 3,
+  "mensaje": "feat(HU-11): filtros por fechas, turno y equipo",
+  "rama": "hu-11-filtros",
+  "archivos": [
+   "Frontend/index.html",
+   "Frontend/js/app.js",
+   "Frontend/js/indicadores.js",
+   "Tests/filtros.test.js"
+  ]
+ },
+ {
+  "n": 12,
+  "slug": "graficos",
+  "autor": "Iván Santiago",
+  "fecha": "2026-10-29",
+  "sprint": 3,
+  "mensaje": "feat(HU-12): gráficos del tablero",
+  "rama": "hu-12-graficos",
+  "archivos": [
+   "Frontend/index.html",
+   "Frontend/js/app.js",
+   "Frontend/js/indicadores.js",
+   "Frontend/vendor/chart.umd.min.js",
+   "Tests/graficos.test.js"
+  ]
+ },
+ {
+  "n": 13,
+  "slug": "hallazgos",
+  "autor": "Juan José",
+  "fecha": "2026-10-29",
+  "sprint": 3,
+  "mensaje": "feat(HU-13): hallazgos automáticos",
+  "rama": "hu-13-hallazgos",
+  "archivos": [
+   "Frontend/index.html",
+   "Frontend/js/app.js"
+  ]
+ },
+ {
+  "n": 14,
+  "slug": "exportar-e-imprimir",
+  "autor": "Juan José",
+  "fecha": "2026-10-29",
+  "sprint": 3,
+  "mensaje": "feat(HU-14): exportar CSV e imprimir el tablero",
+  "rama": "hu-14-exportar-e-imprimir",
+  "archivos": [
+   "Frontend/index.html",
+   "Frontend/js/app.js"
+  ]
+ },
+ {
+  "n": 15,
+  "slug": "pruebas-archivo-distinto",
+  "autor": "María Camila",
+  "fecha": "2026-10-29",
+  "sprint": 3,
+  "mensaje": "test(HU-15): plan de pruebas y verificación con un archivo distinto (octubre)",
+  "rama": "hu-15-pruebas-archivo-distinto",
+  "archivos": [
+   "Docs/Plan_Pruebas.md",
+   "Simulacion/Base_Panaderia_Indicadores_2026-10.xlsx",
+   "Tests/archivo-distinto.test.js"
+  ]
+ },
+ {
+  "n": 16,
+  "slug": "prototipo-final",
+  "autor": "Iván Santiago",
+  "fecha": "2026-10-29",
+  "sprint": 3,
+  "mensaje": "feat(HU-16): prototipo final publicado en Apps Script y GitHub Pages; manual de usuario",
+  "rama": "hu-16-prototipo-final",
+  "archivos": [
+   "Backend/Index.html",
+   "Docs/Manual_Usuario.md",
+   "README.md",
+   "index.html"
+  ]
+ }
+]

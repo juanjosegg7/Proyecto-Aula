@@ -1,0 +1,13 @@
+PAQUETES POR HISTORIA DE USUARIO — Tablero Pan Trenza · Panadería San Nicolás
+
+Cada carpeta HU-xx-… contiene SOLO los archivos que esa historia crea o cambia, en las rutas
+del repositorio (Frontend/, Backend/, Docs/, Simulacion/, Tests/), y un COMMIT.txt con:
+responsable, fecha, rama, mensaje del commit y comandos exactos.
+
+1. Aplicar EN ORDEN: HU-01, HU-02, … HU-16. Cada una entra a main (Pull Request + merge)
+   antes de empezar la siguiente.
+2. Copiar el contenido de la carpeta (menos COMMIT.txt) en la raíz del repositorio y reemplazar.
+3. Desde HU-04: npm test debe pasar antes del commit.
+4. Nunca cambiar la fecha de un commit.
+
+Paso a paso completo: Guía 1 (PDF).

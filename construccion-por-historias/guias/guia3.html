@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>Guía 3 · Subir la app a Google Apps Script</title><link rel="stylesheet" href="estilo.css"></head>
+<body>
+<h1>Guía 3 · Subir la app a Google Apps Script</h1>
+<p class="sub">Tablero de Indicadores · Panadería San Nicolás — publicación como aplicación web para la entrega</p>
+
+<div class="portada"><table>
+<tr><td>Resultado</td><td>Un enlace de Google (<code>https://script.google.com/macros/s/…/exec</code>) que abre la app: el prototipo v0 el 27 de octubre y el prototipo final el 29, con la misma URL.</td></tr>
+<tr><td>Archivos</td><td>Carpeta <b>Backend/</b> del repositorio: <code>Code.gs</code>, <code>Index.html</code> y <code>appsscript.json</code></td></tr>
+<tr><td>Necesitas</td><td>Una cuenta de Google y un computador (el editor de Apps Script no funciona bien en el celular)</td></tr>
+<tr><td>Tiempo</td><td>15 minutos</td></tr>
+</table></div>
+
+<h2>Antes de empezar: qué cambia y qué no</h2>
+<p>El docente rechazó la primera versión porque el código vivía solo en Apps Script, usaba Google Sheets y no generaba el tablero con un archivo nuevo. Esta publicación <b>es distinta</b>, y conviene decirlo así en la sustentación:</p>
+<table class="t">
+<tr><th></th><th>Primera versión (rechazada)</th><th>Esta publicación</th></tr>
+<tr><td>Código fuente</td><td>Solo en el editor de Apps Script</td><td>En GitHub (<code>Frontend/</code>); <code>Backend/Index.html</code> se <b>genera</b> desde ahí</td></tr>
+<tr><td>Datos</td><td>Google Sheets</td><td>El Excel que carga el usuario, procesado en su navegador</td></tr>
+<tr><td>Qué hace Google</td><td>Formularios y guardar en hojas</td><td>Solo entrega la página (<code>doGet</code> en <code>Code.gs</code>)</td></tr>
+<tr><td>Si Google falla</td><td>La app no funciona</td><td>La misma app sigue en GitHub Pages y sin internet</td></tr>
+</table>
+<p>La justificación está en <code>Docs/Decisiones_Tecnicas.md</code>.</p>
+<h2>Cuándo se publica</h2>
+<table class="t">
+<tr><th>Momento</th><th>Historia</th><th>Qué se hace</th></tr>
+<tr><td>Martes 27 oct.</td><td><b>HU-06 · prototipo v0</b></td><td>Primera publicación (pasos 1 a 6). Muestra el OEE del horno con A, R y Q.</td></tr>
+<tr><td>Jueves 29 oct.</td><td><b>HU-16 · prototipo final</b></td><td>Se reemplaza <code>Index</code> y se crea una nueva versión de la misma implementación (sección «Actualizar»). La URL no cambia.</td></tr>
+</table>
+<div class="nota">El <code>Backend/Index.html</code> de cada momento ya viene generado en el paquete de la HU-06 y en el de la HU-16. Si se quiere regenerar: <code>python Backend/construir_index.py</code> desde la raíz del repositorio.</div>
+
+<h2>Opción A · Desde el navegador (recomendada)</h2>
+
+<h3>1. Crear el proyecto</h3>
+<ol>
+<li>Entrar a <b>script.google.com</b> con la cuenta de Google del equipo.</li>
+<li>Clic en <b>Nuevo proyecto</b>.</li>
+<li>Arriba, donde dice <i>Proyecto sin título</i>, escribir <b>Tablero Pan Trenza</b>.</li>
+</ol>
+
+<h3>2. Pegar Code.gs</h3>
+<ol>
+<li>En el editor ya existe el archivo <b>Código.gs</b> (o <i>Code.gs</i>). Borrar todo su contenido.</li>
+<li>Abrir <code>Backend/Code.gs</code> del repositorio (con Bloc de notas o Cursor), copiar todo y pegarlo.</li>
+</ol>
+<pre>function doGet() {
+  return HtmlService.createHtmlOutputFromFile('Index')
+    .setTitle('Tablero Pan Trenza · Panadería San Nicolás')
+    .addMetaTag('viewport', 'width=device-width, initial-scale=1')
+    .setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
+}</pre>
+
+<h3>3. Crear el archivo Index</h3>
+<ol>
+<li>A la izquierda, junto a <b>Archivos</b>, clic en <b>+ → HTML</b>.</li>
+<li>Nombrarlo exactamente <b>Index</b> (con I mayúscula y sin «.html»; el editor lo agrega solo).</li>
+<li>Borrar el contenido que trae.</li>
+<li>Abrir <code>Backend/Index.html</code> del repositorio con Cursor o Bloc de notas, seleccionar todo (<span class="kbd">Ctrl</span>+<span class="kbd">A</span>), copiar (<span class="kbd">Ctrl</span>+<span class="kbd">C</span>) y pegar en el editor.</li>
+<li>Guardar con <span class="kbd">Ctrl</span>+<span class="kbd">S</span> (ícono de disquete).</li>
+</ol>
+<div class="nota"><code>Index.html</code> pesa unos 120 KB porque incluye los datos de ejemplo de septiembre. Es normal que el editor tarde unos segundos al pegar.</div>
+
+<h3>4. Implementar como aplicación web</h3>
+<ol>
+<li>Arriba a la derecha: <b>Implementar → Nueva implementación</b>.</li>
+<li>En el engranaje de <i>Seleccionar tipo</i>, elegir <b>Aplicación web</b>.</li>
+<li>Descripción: <code>Prototipo v0 · HU-06</code></li>
+<li><b>Ejecutar como:</b> Yo (su correo).</li>
+<li><b>Quién tiene acceso:</b> <b>Cualquier usuario</b> (así el docente lo abre sin iniciar sesión).</li>
+<li>Clic en <b>Implementar</b>. Si pide autorización: <b>Autorizar acceso</b> → elegir la cuenta → si aparece «Google no verificó esta app», clic en <b>Configuración avanzada → Ir a Tablero Pan Trenza (no seguro)</b> → <b>Permitir</b>. Es su propio script; no pide permisos sobre Drive ni Sheets.</li>
+<li>Copiar la <b>URL de la aplicación web</b> (termina en <code>/exec</code>).</li>
+</ol>
+
+<h3>5. Probar</h3>
+<ol>
+<li>Abrir la URL en una ventana de incógnito (así se ve como la verá el docente).</li>
+<li><b>Usar datos de ejemplo</b>: OEE <b>67,7 %</b> (v0 y final). En el final además: SLA <b>92,1 %</b>, % no vendido <b>2,3 %</b>, productividad <b>8,03</b>, gráficos y hallazgos.</li>
+<li><b>Cargar datos</b> → subir <code>Base_Panaderia_Indicadores_2026-10.xlsx</code>: <b>42 turnos</b>, OEE <b>71,1 %</b>.</li>
+<li>Probar también desde el celular.</li>
+</ol>
+
+<h3>6. Dejar evidencia</h3>
+<ul>
+<li>Pegar la URL <code>/exec</code> en la primera página del informe, junto al enlace del repositorio. En la HU-16, pegarla también en el README (línea «Aplicación (Google Apps Script)»).</li>
+<li>Hacer commit de ese cambio en GitHub con el mensaje <code>docs: enlace de la app en Google Apps Script</code>.</li>
+</ul>
+
+<h2>Actualizar (HU-16 y cualquier cambio posterior)</h2>
+<p>El código se cambia siempre en GitHub (<code>Frontend/</code>) y después se regenera y se vuelve a pegar el <code>Index.html</code>:</p>
+<pre>python Backend/construir_index.py          <span class="c"># regenera Backend/Index.html desde Frontend/</span>
+git add Backend/Index.html
+git commit -m "build: regenerar Index.html para Apps Script"</pre>
+<ol>
+<li>En el editor de Apps Script, reemplazar el contenido de <b>Index</b> por el nuevo y guardar.</li>
+<li><b>Implementar → Gestionar implementaciones</b> → lápiz (editar) → <b>Versión: Nueva versión</b> → <b>Implementar</b>. <b>La URL no cambia.</b></li>
+</ol>
+<div class="alerta">No edite <code>Index</code> directamente en Apps Script: se perdería en la próxima regeneración y el cambio no quedaría en el repositorio, que fue justamente la observación del docente.</div>
+
+<h2>Opción B · Con clasp (desde la terminal)</h2>
+<p><code>clasp</code> es la herramienta oficial de Google para subir un proyecto de Apps Script desde una carpeta. Necesita Node.js.</p>
+<ol>
+<li>Activar la API de Apps Script en <b>script.google.com/home/usersettings</b> (interruptor «API de Google Apps Script» en <i>Activado</i>).</li>
+<li>En la terminal, dentro del repositorio:</li>
+</ol>
+<pre>npm install -g @google/clasp
+clasp login                                         <span class="c"># abre el navegador para autorizar</span>
+python Backend/construir_index.py
+cd Backend
+clasp create --type webapp --title "Tablero Pan Trenza" --rootDir .
+clasp push                                          <span class="c"># sube Code.gs, Index.html y appsscript.json</span>
+clasp deploy --description "Entrega final 29 oct."
+clasp open                                          <span class="c"># abre el proyecto en el navegador</span></pre>
+<div class="nota">Si al crear el proyecto <code>clasp</code> reemplaza <code>appsscript.json</code>, recupere el del repositorio con <code>git checkout Backend/appsscript.json</code> antes de <code>clasp push</code>.</div>
+<p>Luego: <b>Implementar → Gestionar implementaciones</b> para copiar la URL <code>/exec</code>. <code>clasp create</code> crea el archivo <code>Backend/.clasp.json</code> con el id del proyecto; súbalo también al repositorio. Para actualizar: <code>python Backend/construir_index.py</code> → <code>clasp push</code> → <code>clasp deploy -i &lt;id de la implementación&gt;</code> (mantiene la URL).</p>
+
+<h2>Problemas comunes</h2>
+<table class="t">
+<tr><th>Síntoma</th><th>Solución</th></tr>
+<tr><td>«No se encontró el archivo HTML llamado Index»</td><td>El archivo HTML debe llamarse exactamente <b>Index</b>.</td></tr>
+<tr><td>Pantalla en blanco</td><td>Revisar que se pegó <b>todo</b> <code>Index.html</code> (debe terminar en <code>&lt;/html&gt;</code>) y guardar antes de implementar.</td></tr>
+<tr><td>No aparecen los gráficos</td><td>Los gráficos y la lectura de Excel se cargan de <b>cdnjs.cloudflare.com</b>: verificar la conexión a internet o que la red no bloquee ese sitio.</td></tr>
+<tr><td>Con la cuenta de la universidad no deja elegir «Cualquier usuario»</td><td>Las cuentas institucionales a veces lo restringen. Usar una cuenta personal de Gmail.</td></tr>
+<tr><td>Los botones de descargar plantilla o datos no descargan</td><td>Esos botones abren el archivo en GitHub: funcionan cuando el repositorio es público y la plantilla y los datos ya están en <code>main</code> (HU-02 y HU-03).</td></tr>
+<tr><td>Exportar CSV no descarga</td><td>Algunos navegadores bloquean descargas dentro de Apps Script. En ese caso se usa la versión de GitHub Pages para exportar.</td></tr>
+<tr><td>Los cambios no se ven</td><td>Falta crear una <b>nueva versión</b> en «Gestionar implementaciones», o el navegador guardó la versión anterior: recargar con <span class="kbd">Ctrl</span>+<span class="kbd">F5</span>.</td></tr>
+</table>
+</body></html>
